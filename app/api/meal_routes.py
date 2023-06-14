@@ -24,9 +24,9 @@ def get_current_meals_details():
     Gets meal logs of current user
     """
     meal_logs = Meal_Log.query.filter(Meal_Log.profile_id==current_user.id).all()
-    meal_logs_dict = [meal.to_dict() for meal in meal_logs]
-    print("cuuureent user info", current_user)
-    return jsonify(meal_logs_dict)
+    meal_logs_list = [meal.to_dict() for meal in meal_logs]
+    # print("cuuureent user info", current_user)
+    return jsonify(meal_logs_list)
 
 @meal_routes.route('/details/<int:id>')
 @login_required

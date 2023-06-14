@@ -19,8 +19,8 @@ def validation_errors_message(validation_errors):
 
 @profile_routes.route("/")
 @login_required
-def get_current_profile():
-    all_profiles=Profile.query.filter(Profile.user_id)
+def get_current_profiles():
+    all_profiles=Profile.query.filter(Profile.user_id==current_user.id).all()
     profile_array=[profile.to_dict() for profile in all_profiles] 
-    print(profile_array)
-    return profile_array
+    print("current profiles-----------",profile_array)
+    return jsonify(profile_array)
