@@ -34,7 +34,7 @@ def seed_meals():
 
 def undo_meals():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.bookings RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.mealss RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM meal"))
 
