@@ -30,6 +30,6 @@ def undo_profiles():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.profile RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM profiles"))
+        db.session.execute(text("DELETE FROM profile"))
 
     db.session.commit()
