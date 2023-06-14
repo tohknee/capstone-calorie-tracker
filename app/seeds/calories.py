@@ -21,7 +21,7 @@ def seed_calories():
 
 def undo_calories():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.calories RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.calorie_goal RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM calorie goals"))
 

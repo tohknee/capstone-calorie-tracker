@@ -23,7 +23,7 @@ def seed_weights():
 
 def undo_weights():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.weights RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.weight_goal RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM calorie goals"))
 

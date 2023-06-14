@@ -28,7 +28,7 @@ def seed_profiles():
 
 def undo_profiles():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.pet_profiles RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.profile RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM profiles"))
 
