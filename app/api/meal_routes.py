@@ -35,6 +35,8 @@ def get_one_meal_details(id):
     Gets one meal log of current user
     """
     meal_log = Meal_Log.query.get(id)
+    if not meal_log:
+        return jsonify({'error': 'Meal log not found'}), 404
     return meal_log.to_dict()
 
 @meal_routes.route('/new',methods=["POST"])
@@ -64,7 +66,7 @@ def post_one_meal():
 @login_required
 def edit_meal_log(id):
     """
-    Update a meal log for the current user
+    Update a meal log for the current user 
     """ 
     meal_log=Meal_Log.query.get(id)
 
@@ -74,12 +76,16 @@ def edit_meal_log(id):
     form=MealForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    meal_log.portion_size=form.portion_size.data
-    meal_log.meal_calories=form.meal_calories.data
-    meal_log.category=form.category.data
+    if meal_log.profile_id ==current_user.id:
 
-    db.session.commit()
-    return jsonify(meal_log.to_dict())
+        meal_log.portion_size=form.portion_size.data
+        meal_log.meal_calories=form.meal_calories.data
+        meal_log.category=form.category.data
+
+        db.session.commit()
+        return jsonify(meal_log.to_dict())
+    return jsonify({'error': 'You do not own this meal log'}), 401
+
 
 @meal_routes.route('/delete/<int:id>',methods=["DELETE"])
 @login_required
