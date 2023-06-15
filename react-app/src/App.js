@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import GetCurrentPetProfiles from "./components/PetProfile/CurrentUserPetProfiles";
 import PetProfileForm from "./components/PetProfile/PetProfileForm";
+import CreateProfile from "./components/PetProfile/CreatePetProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function App() {
           </Route>
           <Route exact path="/profile" component={GetCurrentPetProfiles}></Route>
           <Route exact path="/profile/new" component={PetProfileForm}></Route>
+          <Route exact path="/profile/new1" component={CreateProfile}></Route>
           
         </Switch>
       )}

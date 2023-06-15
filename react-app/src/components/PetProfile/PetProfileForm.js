@@ -21,6 +21,10 @@ const PetProfileForm = ()=> {
     const handleSubmit=e=>{
         e.preventDefault()
 
+        let errors={}
+        if(!dog_name) errors.dog_name="Pet name required."
+        // if(!breed) errors.breed=
+
         setDogName("");
         setBreed("");
         setWeight("");
