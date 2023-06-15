@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, Fragment } from "react";
 import { thunkCurrentUserPets } from "../../store/profile";
-
+import OpenModalButton from "../OpenModalButton";
+import DeletePetProfile from "./DeleteProfile";
 
 const GetCurrentPetProfiles = () => {
     const dispatch = useDispatch()
@@ -28,7 +29,10 @@ return (
       <div key={profile.id}>
         <div>Pet Name: {profile.dog_name} Breed: {profile.breed}</div>
         <div>Age:{profile.age} Weight: {profile.weight}</div>
-        
+        <OpenModalButton
+                        buttonText="Delete Booking"
+                        modalComponent={<DeletePetProfile profileId={profile.id} />}
+                    />
         <br></br>
       </div>
     );

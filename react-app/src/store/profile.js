@@ -77,7 +77,7 @@ export const thunkEditProfile=(profile)=> async dispatch=>{
 }
 
 export const thunkDeleteProfile =(profileId) => async dispatch=>{
-    const response =await fetch (`/api/profile/delte/${profileId}`,{
+    const response =await fetch (`/api/profile/delete/${profileId}`,{
         method: 'DELETE'
     })
     if (response.ok) {
