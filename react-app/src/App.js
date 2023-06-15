@@ -5,6 +5,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import GetCurrentPetProfiles from "./components/PetProfile/CurrentUserPetProfiles";
+import PetProfileForm from "./components/PetProfile/PetProfileForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +26,9 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route exact path="/profile" component={GetCurrentPetProfiles}></Route>
+          <Route exact path="/profile/new" component={PetProfileForm}></Route>
+          
         </Switch>
       )}
     </>
