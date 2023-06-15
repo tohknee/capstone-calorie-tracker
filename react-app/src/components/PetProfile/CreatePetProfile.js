@@ -9,12 +9,27 @@ const CreateProfile=()=> {
     const dispatch=useDispatch()
     const profilesObj=useSelector(state=>state)
     const sessionUserId=useSelector(state=>state.session.user.id)
-    const profile = {}
+    const userId = sessionUserId
 
+    useEffect(()=>{
+        dispatch(thunkCurrentUserPets())
+    },[dispatch])
+
+    const profile = {
+        dog_name:"",
+        breed:"",
+        weight:"",
+        age:"",
+        gender:"",
+        userId:userId
+    }
+
+    
     return (
         <>
         {console.log("Create profile js ",sessionUserId)}
         {console.log("Create profile js ",profilesObj)}
+      
         <PetProfileForm
         formType="Create Profile"
         profile={profile}

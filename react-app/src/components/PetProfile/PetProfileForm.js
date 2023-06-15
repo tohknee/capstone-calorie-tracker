@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
-import { thunkCurrentUserPets } from "../../store/profile";
+import { thunkCurrentUserPets,thunkCreatePetProfile } from "../../store/profile";
 
-const PetProfileForm = ()=> {
+const PetProfileForm = ({profile,formType})=> {
     const dispatch=useDispatch()
     const history=useHistory()
 
@@ -15,8 +15,8 @@ const PetProfileForm = ()=> {
     const [gender,setGender]=useState("")
 
     useEffect(()=>{
-        dispatch(thunkCurrentUserPets)
-    })
+        dispatch(thunkCurrentUserPets())
+    },[dispatch])
 
     const handleSubmit=e=>{
         e.preventDefault()
@@ -24,13 +24,41 @@ const PetProfileForm = ()=> {
         let errors={}
         if(!dog_name) errors.dog_name="Pet name required."
         // if(!breed) errors.breed=
+        
+        if (!!Object.keys(errors).length) return
 
-        setDogName("");
-        setBreed("");
-        setWeight("");
-        setAge("");
-        setGender("");
+        profile = {
+            ...profile,
+            dog_name,
+            breed,
+            weight,
+            age,
+            gender
+        }
+
+        if (formType === "Create Profile") {
+            dispatch(thunkCreatePetProfile(profile))
+            dispatch(thunkCurrentUserPets())
+            history.push(`/profile`)
+        }
+        // setDogName("");
+        // setBreed("");
+        // setWeight("");
+        // setAge("");
+        // setGender("");
     }
+
+    // if(Object.keys(errors).length ===0) {
+    //     dispatch(CreateProfile({
+    //         dog_name,
+    //         breed,
+    //         weight,
+    //         age,
+    //         gender
+    //     })
+            
+    //     )
+    // }
 
     return  (
 <>
