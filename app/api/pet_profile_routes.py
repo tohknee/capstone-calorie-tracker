@@ -85,3 +85,19 @@ def edit_pet(id):
         db.session.commit()
         return jsonify(pet_profile.to_dict())
     return jsonify({'error': 'You do not own this pet'}), 401
+
+@profile_routes.route("/delete/<int:id>",methods=["DELETE"])
+@login_required
+def delete_pet(id):
+    """
+    Delete a pet profile for the current user 
+    """ 
+    pet_profile=Profile.query.get(id)
+
+    if not pet_profile:
+        return jsonify({'error': 'Pet profile not found'}), 404
+    if pet_profile.user_id==current_user.id:
+        db.session.delete(pet_profile)
+        db.session.commit()
+        return jsonify({'message': 'Pet profile log deleted successfully!'}), 200
+    return jsonify({'error': 'You do not own this pet profile.'}), 401

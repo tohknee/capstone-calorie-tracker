@@ -90,7 +90,9 @@ def edit_meal_log(id):
 @meal_routes.route('/delete/<int:id>',methods=["DELETE"])
 @login_required
 def delete_log(id):
-
+    """
+    Delete a meal log for the current user 
+    """ 
     meal_log=Meal_Log.query.get(id)
     
     if not meal_log:
@@ -98,5 +100,5 @@ def delete_log(id):
     if meal_log.profile_id ==current_user.id:
         db.session.delete(meal_log)
         db.session.commit()
-        return jsonify({'message': 'Meal log deleted'}), 200
+        return jsonify({'message': 'Meal log deleted successfully!'}), 200
     return jsonify({'error': 'You do not own this meal log'}), 401
