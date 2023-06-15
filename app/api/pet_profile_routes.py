@@ -60,3 +60,28 @@ def post_new_pet():
     db.session.add(new_pet)
     db.session.commit()
     return new_pet.to_dict()
+
+@profile_routes.route("/edit/<int:id>",methods=["PUT"])
+@login_required
+def edit_pet(id):
+    """
+    Update a pet profile for the current user 
+    """ 
+    pet_profile=Profile.query.get(id)
+
+    if not pet_profile:
+        return jsonify({'error': 'Meal log not found'}), 404
+    
+    form=PetForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if pet_profile.user_id==current_user.id:
+        pet_profile.dog_name=form.dog_name.data
+        pet_profile.breed=form.breed.data
+        pet_profile.weight=form.weight.data
+        pet_profile.age=form.age.data
+        pet_profile.gender=form.gender.data
+
+        db.session.commit()
+        return jsonify(pet_profile.to_dict())
+    return jsonify({'error': 'You do not own this pet'}), 401
