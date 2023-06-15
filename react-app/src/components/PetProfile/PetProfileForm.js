@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
-import { thunkCurrentUserPets,thunkCreatePetProfile } from "../../store/profile";
+import { thunkCurrentUserPets,thunkCreatePetProfile,thunkEditProfile } from "../../store/profile";
 
 const PetProfileForm = ({profile,formType})=> {
     const dispatch=useDispatch()
@@ -41,25 +41,14 @@ const PetProfileForm = ({profile,formType})=> {
             dispatch(thunkCurrentUserPets())
             history.push(`/profile`)
         }
-        // setDogName("");
-        // setBreed("");
-        // setWeight("");
-        // setAge("");
-        // setGender("");
+        if (formType === "Edit Profile") {
+            dispatch(thunkEditProfile(profile))
+            dispatch(thunkCurrentUserPets())
+            history.push(`/profile`)
+        }
     }
 
-    // if(Object.keys(errors).length ===0) {
-    //     dispatch(CreateProfile({
-    //         dog_name,
-    //         breed,
-    //         weight,
-    //         age,
-    //         gender
-    //     })
-            
-    //     )
-    // }
-
+ 
     return  (
 <>
       <h1>Pet Profile Form</h1>

@@ -1,8 +1,6 @@
 import PetProfileForm from "./PetProfileForm";
-import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, Fragment } from "react";
-import { useHistory } from "react-router-dom";
+import { useEffect} from "react";
 import { thunkCurrentUserPets } from "../../store/profile";
 
 const CreateProfile=()=> {
