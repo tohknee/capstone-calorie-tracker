@@ -2,15 +2,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
-import { thunkCreateMealLog,thunkCurrentUserMealLogs } from "../../store/meals";
+import { thunkCreateMealLog,thunkCurrentUserMealLogs,thunkEditMealLog } from "../../store/meals";
 
 
 const MealForm=({meal,formType})=>{
     const dispatch=useDispatch()
     const history=useHistory()
-    const [portion_size,setPortion] = useState("")
-    const [meal_calories,setCalories]=useState("")
-    const [category,setCategory]=useState("")
+    const [portion_size,setPortion] = useState(meal?.portion_size)
+    const [meal_calories,setCalories]=useState(meal?.meal_calories)
+    const [category,setCategory]=useState(meal?.category)
 
     useEffect(()=>{
         dispatch(thunkCurrentUserMealLogs())
@@ -25,8 +25,8 @@ const MealForm=({meal,formType})=>{
 
         if (!!Object.keys(errors).length) return
 
-        const newMeal={
-        
+        meal={
+            ...meal,
             portion_size,
             meal_calories,
             category
@@ -34,11 +34,16 @@ const MealForm=({meal,formType})=>{
 
         if (formType === "Create Meal log") {
             console.log("this is meal form meal",meal)
-            dispatch(thunkCreateMealLog(newMeal))
+            dispatch(thunkCreateMealLog(meal))
             dispatch(thunkCurrentUserMealLogs())
             // history.push(`/meals`)
         }
-
+        if (formType === "Edit Meal Log") {
+            console.log("this is meal form meal",meal)
+            dispatch(thunkEditMealLog(meal))
+            dispatch(thunkCurrentUserMealLogs())
+            // history.push(`/meals`)
+        }
 
     }
     return (

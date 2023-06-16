@@ -30,7 +30,11 @@ const GetCurrentMealLogs=()=>{
         <div>Category: {log.category}</div>
         <div>Meal Calories: {log.meal_calories}</div>
         <div>Servings: {log.portion_size}</div>
-
+        <Link to={`/meals/edit/${log.id}`}>
+            <button>
+                Edit Meal Log
+            </button>
+        </Link>
         <OpenModalButton
                         buttonText="Remove Meal Log"
                         modalComponent={<DeleteMealLog mealId={log.id} />}

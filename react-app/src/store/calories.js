@@ -1,0 +1,1 @@
+// const GET_CURRENT_CALORIE_GOAL=""

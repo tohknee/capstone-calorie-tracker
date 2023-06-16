@@ -41,14 +41,15 @@ export const thunkCurrentUserMealLogs=()=>async(dispatch)=>{
     }
 }
 
-// export const thunkGetOneMealLog=()=> async (dispatch)=>{
-//     const response= await fetch(`/api/meal/details/${mealId}`)
-
-//     if (response.ok) {
-//         const data = await response.json()
-//         dispatch(getOneMealLog(data))
-//     }
-// }
+export const thunkGetOneMealLog=(mealId)=> async (dispatch)=>{
+    const response= await fetch(`/api/meals/details/${mealId}`)
+    console.log(mealId)
+    if (response.ok) {
+        const data = await response.json()
+        // dispatch(getOneMealLog(data))
+        dispatch(getOneMealLog({ ...data, id: mealId }));
+    }
+}
 
 export const thunkCreateMealLog=(meal)=>async(dispatch)=>{
     console.log("this is meal",meal)
@@ -70,6 +71,10 @@ export const thunkEditMealLog=(meal)=>async dispatch => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(meal)
     })
+    if (response.ok){
+        const data=await response.json()
+        dispatch(editMealLog(data))
+    }
 }
 
 export const thunkDeleteMealLog=(mealId)=> async (dispatch) =>{
@@ -104,15 +109,24 @@ const mealReducer = (state=initialState, action)=> {
                 ...newState
             }
         }
-        case EDIT_MEAL_LOG:{
-            const newState={}
-            const newMealLog= action.meal
-            newState[newMealLog.id]=newMealLog //cjamge tjis
-            return{
-                ...state,
-                ...newState
-            }
-        }
+        // case EDIT_MEAL_LOG:{
+        //     const newState={}
+        //     const newMealLog= action.meal
+        //     newState[newMealLog.id]=newMealLog //cjamge tjis
+        //     return{
+        //         ...state,
+        //         ...newState
+        //     }
+           
+        // }
+        case EDIT_MEAL_LOG: {
+            const editedMealLog = action.meal;
+            return {
+              ...state,
+              [editedMealLog.id]: editedMealLog,
+            };
+          }
+          
         case DELETE_MEAL_LOG:{
             const mealId=action.meal
             const newState= {

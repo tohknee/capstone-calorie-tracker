@@ -10,7 +10,7 @@ import CreateProfile from "./components/PetProfile/CreatePetProfile";
 import EditPetProfile from "./components/PetProfile/EditPetProfile";
 import GetCurrentMealLogs from "./components/MealLogs/CurrentUserMealLog";
 import CreateMealLog from "./components/MealLogs/CreateMealLog";
-
+import EditMealLog from "./components/MealLogs/EditMealLog";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -34,6 +34,7 @@ function App() {
           <Route exact path="/profile/edit/:profileId" component={EditPetProfile}></Route>
           <Route exact path="/meals" component={GetCurrentMealLogs}></Route>
           <Route exact path="/meals/new" component={CreateMealLog}></Route>
+          <Route exact path="/meals/edit/:mealId" component={EditMealLog}></Route>
           
         </Switch>
       )}
