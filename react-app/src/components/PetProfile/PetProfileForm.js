@@ -8,11 +8,11 @@ const PetProfileForm = ({profile,formType})=> {
     const dispatch=useDispatch()
     const history=useHistory()
 
-    const [dog_name,setDogName]=useState("")
-    const [breed,setBreed]=useState("")
-    const [weight,setWeight]=useState("")
-    const [age,setAge]=useState("")
-    const [gender,setGender]=useState("")
+    const [dog_name,setDogName]=useState(profile?.dog_name)
+    const [breed,setBreed]=useState(profile?.breed)
+    const [weight,setWeight]=useState(profile?.weight)
+    const [age,setAge]=useState(profile?.age)
+    const [gender,setGender]=useState(profile?.gender)
 
     useEffect(()=>{
         dispatch(thunkCurrentUserPets())

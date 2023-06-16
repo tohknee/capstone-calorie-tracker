@@ -27,7 +27,7 @@ const CreateProfile=()=> {
         <>
         {console.log("Create profile js ",sessionUserId)}
         {console.log("Create profile js ",profilesObj)}
-      
+    
         <PetProfileForm
         formType="Create Profile"
         profile={profile}
