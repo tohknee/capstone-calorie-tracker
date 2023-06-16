@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import profileReducer from './profile';
 import mealReducer from './meals';
+import calorieReducer from './calories';
 
 const rootReducer = combineReducers({
   session,
   profile:profileReducer,
-  meal:mealReducer
+  meal:mealReducer,
+  calorieReducer:calorieReducer || null,
 });
 
 
