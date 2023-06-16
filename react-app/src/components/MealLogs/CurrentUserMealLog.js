@@ -3,6 +3,7 @@ import { useEffect, Fragment } from "react";
 import { thunkCurrentUserMealLogs } from "../../store/meals";
 import OpenModalButton from "../OpenModalButton";
 import { Link } from "react-router-dom"
+import DeleteMealLog from "./DeleteMealLog";
 
 
 const GetCurrentMealLogs=()=>{
@@ -29,6 +30,11 @@ const GetCurrentMealLogs=()=>{
         <div>Category: {log.category}</div>
         <div>Meal Calories: {log.meal_calories}</div>
         <div>Servings: {log.portion_size}</div>
+
+        <OpenModalButton
+                        buttonText="Remove Meal Log"
+                        modalComponent={<DeleteMealLog mealId={log.id} />}
+                    />
         <br></br>
       </div>
     );

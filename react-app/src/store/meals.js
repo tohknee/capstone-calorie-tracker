@@ -64,22 +64,22 @@ export const thunkCreateMealLog=(meal)=>async(dispatch)=>{
             dispatch(createMealLog(data))
     }
 }
-// export const thunkEditMealLog=(meal)=>async dispatch => {
-//     const response=await fetch(`/api/meals/edit/${meal.id}`,{
-//         method: 'PUT',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(meal)
-//     })
-// }
+export const thunkEditMealLog=(meal)=>async dispatch => {
+    const response=await fetch(`/api/meals/edit/${meal.id}`,{
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(meal)
+    })
+}
 
-// export const thunkDeleteMealLog=(mealId)=> async (dispatch) =>{
-//     const response=await fetch (`/api/meals/delete/${mealId}`,{
-//         method: 'DELETE'
-//     })
-//     if (response.ok) {
-//         dispatch(deleteMealLog(mealId))
-//     }
-// }
+export const thunkDeleteMealLog=(mealId)=> async (dispatch) =>{
+    const response=await fetch (`/api/meals/delete/${mealId}`,{
+        method: 'DELETE'
+    })
+    if (response.ok) {
+        dispatch(deleteMealLog(mealId))
+    }
+}
 const initialState={}
 const mealReducer = (state=initialState, action)=> {
     switch(action.type) {
