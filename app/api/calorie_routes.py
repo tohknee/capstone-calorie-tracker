@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from app.models.calorie_goal import Calorie_Goal
+from app.models.pet_profile import Profile
 from flask_login import login_required, current_user
 from app.models.db import db
 from app.forms.calorie_form import CalorieForm
@@ -66,6 +67,15 @@ def delete_calorie_goal(id):
     Delete a calorie for the current pet
     """ 
     calorie_goal=Calorie_Goal.query.get(id)
+    pet_profiles=Profile.query.filter(Profile.user_id==current_user.id).all()
 
+    # print("thiiisis its calorie goal ----------------",all_profiles)
     if not calorie_goal:
-        return jsonify({'error': 'Meal log not found'}), 404
+        return jsonify({'error': 'Calorie goal not found'}), 404
+    
+    # if calorie_goal.profile_id==current_user.id :
+    if any(profile.id == calorie_goal.profile.id for profile in pet_profiles):
+        db.session.delete(calorie_goal)
+        db.session.commit()
+        return jsonify({'message': 'Meal log deleted successfully!'}), 200
+    return jsonify({'error': 'You do not own this meal log'}), 401
