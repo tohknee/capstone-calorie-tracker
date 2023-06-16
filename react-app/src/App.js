@@ -33,7 +33,7 @@ function App() {
           <Route exact path="/profile/new" component={CreateProfile}></Route>
           <Route exact path="/profile/edit/:profileId" component={EditPetProfile}></Route>
           <Route exact path="/meals" component={GetCurrentMealLogs}></Route>
-          <Route exact path="/:petId/meals/new" component={CreateMealLog}></Route>
+          <Route exact path="/meals/new" component={CreateMealLog}></Route>
           
         </Switch>
       )}

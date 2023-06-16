@@ -19,7 +19,7 @@ function Navigation({ isLoaded }){
 				<NavLink exact to="/profile/new">New Pet Profile</NavLink>
 			</li>
 			<li>
-				<NavLink exact to="/meal/new">New Pet Meal</NavLink>
+				<NavLink exact to="/meals/new">New Pet Meal</NavLink>
 			</li>
 			{isLoaded && (
 				<li>
