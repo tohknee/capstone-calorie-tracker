@@ -18,6 +18,9 @@ function Navigation({ isLoaded }){
 			<li>
 				<NavLink exact to="/profile/new">New Pet Profile</NavLink>
 			</li>
+			<li>
+				<NavLink exact to="/meal/new">New Pet Meal</NavLink>
+			</li>
 			{isLoaded && (
 				<li>
 					<ProfileButton user={sessionUser} />

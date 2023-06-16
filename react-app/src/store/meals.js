@@ -50,19 +50,20 @@ export const thunkCurrentUserMealLogs=()=>async(dispatch)=>{
 //     }
 // }
 
-// export const thunkCreateMealLog=()=>async(dispatch)=>{
-//     const response = await fetch('/api/meals/new',{
-//         "method": "POST",
-//         "headers": { 'Content-Type': 'application/json' },
-//         "body": JSON.stringify(
-//             profile
-//         )
-//     })
-//     if (response.ok) {
-//         const data = await response.json()
-//             dispatch(createProfile(data))
-//     }
-// }
+export const thunkCreateMealLog=(meal)=>async(dispatch)=>{
+    console.log("this is meal",meal)
+    const response = await fetch('/api/meals/new',{
+        "method": "POST",
+        "headers": { 'Content-Type': 'application/json' },
+        "body": JSON.stringify(
+            meal
+        )
+    })
+    if (response.ok) {
+        const data = await response.json()
+            dispatch(createMealLog(data))
+    }
+}
 // export const thunkEditMealLog=(meal)=>async dispatch => {
 //     const response=await fetch(`/api/meals/edit/${meal.id}`,{
 //         method: 'PUT',

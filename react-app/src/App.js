@@ -9,6 +9,7 @@ import GetCurrentPetProfiles from "./components/PetProfile/CurrentUserPetProfile
 import CreateProfile from "./components/PetProfile/CreatePetProfile";
 import EditPetProfile from "./components/PetProfile/EditPetProfile";
 import GetCurrentMealLogs from "./components/MealLogs/CurrentUserMealLog";
+import CreateMealLog from "./components/MealLogs/CreateMealLog";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/profile/new" component={CreateProfile}></Route>
           <Route exact path="/profile/edit/:profileId" component={EditPetProfile}></Route>
           <Route exact path="/meals" component={GetCurrentMealLogs}></Route>
+          <Route exact path="/:petId/meals/new" component={CreateMealLog}></Route>
           
         </Switch>
       )}
