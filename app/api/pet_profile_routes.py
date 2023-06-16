@@ -1,8 +1,12 @@
 from flask import Blueprint, jsonify, request
 from app.models.pet_profile import Profile
+from app.models.calorie_goal import Calorie_Goal
+from app.models.weight_goal import Weight_Goal
 from flask_login import login_required, current_user
 from app.models.db import db
 from app.forms.pet_form import PetForm
+from app.forms.calorie_form import CalorieForm
+from app.forms.weight_form import WeightForm
 
 profile_routes=Blueprint("profile", __name__)
 
@@ -101,3 +105,50 @@ def delete_pet(id):
         db.session.commit()
         return jsonify({'message': 'Pet profile log deleted successfully!'}), 200
     return jsonify({'error': 'You do not own this pet profile.'}), 401
+
+
+# CALORIE GOAL ROUTES IF I WANT TO CONNECT CALORIE INFORMATION TO PET PROFILE. get current and get one and delete are in the calorie routes
+
+@profile_routes.route('/<int:id>/calories/new',methods=["POST"])
+@login_required
+def post_one_calorie_goal(id):
+    """
+    Post one caloric goal for current user
+    """
+
+    form=CalorieForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    profile_id=Profile.query.get(id)
+    print("calories route print pet id======================================", profile_id.id)
+    new_calorie_goal=Calorie_Goal(
+        profile_id=profile_id.id,
+        calorie_goal=form.calorie_goal.data,
+        date=form.date.data
+    )
+    db.session.add(new_calorie_goal)
+    db.session.commit()
+    return new_calorie_goal.to_dict()
+
+
+# WEIGHT GOAL ROUTES IF I WANT TO CONNECT WEIGHT INFORMATION TO PET PROFILE
+
+@profile_routes.route('/<int:id>/weight/new', methods=["POST"])
+@login_required
+def post_one_weight_goal(id):
+    """
+    Post one caloric goal for current user
+    """
+    form=WeightForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    profile_id=Profile.query.get(id)
+    new_weight_goal=Weight_Goal(
+        profile_id=profile_id.id,
+        weight_goal=form.weight_goal.data,
+        current_weight=form.current_weight.data,
+        date=form.date.data
+    )
+    db.session.add(new_weight_goal)
+    db.session.commit()
+    return new_weight_goal.to_dict()
