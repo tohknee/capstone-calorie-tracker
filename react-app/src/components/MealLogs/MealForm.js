@@ -36,13 +36,13 @@ const MealForm=({meal,formType})=>{
             console.log("this is meal form meal",meal)
             dispatch(thunkCreateMealLog(meal))
             dispatch(thunkCurrentUserMealLogs())
-            // history.push(`/meals`)
+            history.push(`/meals`)
         }
         if (formType === "Edit Meal Log") {
             console.log("this is meal form meal",meal)
             dispatch(thunkEditMealLog(meal))
             dispatch(thunkCurrentUserMealLogs())
-            // history.push(`/meals`)
+            history.push(`/meals`)
         }
 
     }
