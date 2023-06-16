@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from app.models.calorie_goal import Calorie_Goal
 from flask_login import login_required, current_user
 from app.models.db import db
-
+from app.forms.calorie_form import CalorieForm
 
 calorie_routes=Blueprint("calorie", __name__)
 
@@ -38,3 +38,19 @@ def get_one_calorie_goal(id):
     if not calorie_goal:
         return jsonify({'error': 'Caloric goal not found'}), 404
     return calorie_goal.to_dict()
+
+# @calorie_routes.route('/new',methods=["POST"])
+# @login_required
+# def post_one_calorie_goal():
+#     """
+#     Post one caloric goal for current user
+#     """
+#     form=CalorieForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+
+#     profile_id=current_user.id
+#     print("calories route print pet id", pet_id)
+#     new_calorie_goal=Calorie_Goal(
+#         dog_id=profile_id,
+
+#     )
