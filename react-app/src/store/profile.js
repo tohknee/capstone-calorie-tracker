@@ -56,6 +56,7 @@ export const thunkCreatePetProfile=(profile)=>async(dispatch)=>{
 }
 
 export const thunkGetOnePetProfile=(profileId)=>async(dispatch)=>{
+    console.log("this is thunk get one profile id",profileId)
     const response = await fetch(`/api/profile/${profileId}`)
 
     if (response.ok) {
