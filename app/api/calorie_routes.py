@@ -27,3 +27,14 @@ def get_current_calorie_details():
     calorie_details_dict = [calorie.to_dict() for calorie in calorie_details]
     print("cuuureent user info", current_user)
     return jsonify(calorie_details_dict)
+
+@calorie_routes.route('/details/<int:id>')
+@login_required
+def get_one_calorie_goal(id):
+    """
+    Gets a single calorie goal and calorie logs of current user
+    """
+    calorie_goal=Calorie_Goal.query.get(id)
+    if not calorie_goal:
+        return jsonify({'error': 'Caloric goal not found'}), 404
+    return calorie_goal.to_dict()
