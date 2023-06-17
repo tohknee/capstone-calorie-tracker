@@ -27,3 +27,16 @@ def get_current_weight_details():
     weight_details_dict = [weight.to_dict() for weight in weight_details]
     print("cuuureent user info", current_user)
     return jsonify(weight_details_dict)
+
+@weight_routes.route('/details/<int:id>')
+@login_required
+def get_one_calorie_goal(id):
+    """
+    Gets a single weight goal by id
+    you can view other goals as well
+    """
+    weight_goal=Weight_Goal.query.get(id)
+    print ("THIS IS WEIGHT GOAL ===-=-==-==-=======",weight_goal)
+    if not weight_goal:
+        return jsonify({'error': 'Caloric goal not found'}), 404
+    return weight_goal.to_dict()

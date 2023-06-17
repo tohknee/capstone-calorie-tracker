@@ -34,6 +34,7 @@ def get_current_calorie_details():
 def get_one_calorie_goal(id):
     """
     Gets a single calorie goal by id
+    you can view other goals as well
     """
     calorie_goal=Calorie_Goal.query.get(id)
     if not calorie_goal:
