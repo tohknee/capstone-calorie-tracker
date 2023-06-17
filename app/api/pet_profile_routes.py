@@ -2,11 +2,13 @@ from flask import Blueprint, jsonify, request
 from app.models.pet_profile import Profile
 from app.models.calorie_goal import Calorie_Goal
 from app.models.weight_goal import Weight_Goal
+from app.models.meal_log import Meal_Log
 from flask_login import login_required, current_user
 from app.models.db import db
 from app.forms.pet_form import PetForm
 from app.forms.calorie_form import CalorieForm
 from app.forms.weight_form import WeightForm
+from app.forms.meal_form import MealForm
 
 profile_routes=Blueprint("profile", __name__)
 
@@ -105,7 +107,35 @@ def delete_pet(id):
         db.session.commit()
         return jsonify({'message': 'Pet profile log deleted successfully!'}), 200
     return jsonify({'error': 'You do not own this pet profile.'}), 401
+#PET MEAL ROUTES TO MAKE A NEW MEAL LOG
+@profile_routes.route('/<int:id>/meals/new', methods=["POST"])
+@login_required
+def post_one_meal(id):
+    """
+    Post one meal log for one pet by id
+    make s
+    """
+    pet_profile=Profile.query.get(id)
+    pet_profiles=Profile.query.filter(Profile.user_id==current_user.id).all()
 
+    form = MealForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    # print("printing the profffille object=====-=-=------------",pet_profile.to_dict())
+    if not pet_profile:
+        return jsonify({'error': 'Pet profile not found'}), 404
+    if any(current_user.id == pet_profile.user_id for profile in pet_profiles):
+        new_pet_meal=Meal_Log(
+            profile_id=pet_profile.id,
+            portion_size=form.portion_size.data,
+            meal_calories=form.meal_calories.data,
+            category=form.category.data
+        )
+        db.session.add(new_pet_meal)
+        db.session.commit()
+        return new_pet_meal.to_dict()
+    return jsonify({'error': 'Pet you are trying to make a meal log for does not belong to you.'}), 401
+
+  
 
 # CALORIE GOAL ROUTES IF I WANT TO CONNECT CALORIE INFORMATION TO PET PROFILE. get current and get one and delete are in the calorie routes
 

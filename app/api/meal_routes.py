@@ -43,7 +43,7 @@ def get_one_meal_details(id):
 @login_required
 def post_one_meal():
     """
-    Post one meal log for current user
+    Post one meal log for current pet
     """
     form=MealForm()
     form['csrf_token'].data = request.cookies['csrf_token']
