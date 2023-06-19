@@ -82,3 +82,11 @@ width: 100%;
   background-color:lightgrey;
   margin: 0 10px;
 }
+
+.modal-text{
+  color: #0066EE;
+}
+.modal-text:hover{
+  color: blue;
+  cursor: pointer;
+}

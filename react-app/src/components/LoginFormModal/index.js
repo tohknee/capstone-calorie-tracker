@@ -23,7 +23,12 @@ function LoginFormModal() {
         history.push('/profile')
     }
   };
-
+  const demoLogin = e => {
+    setEmail('demo@aa.io')
+    setPassword('password')
+    return dispatch(login({ email, password }))
+      .then(closeModal)
+  }
   return (
     <>
       <h1>Log In</h1>
@@ -52,6 +57,11 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
+        <div className='loginButtons'>
+          {errors.password && <p>{errors.password}</p>}
+          <button type="submit" disabled={!email || !password}>Log In</button>
+          <button onClick={demoLogin}>Login in as Demo User</button>
+        </div>
       </form>
     </>
   );

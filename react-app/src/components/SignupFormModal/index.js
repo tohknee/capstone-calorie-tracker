@@ -54,9 +54,8 @@ function SignupFormModal() {
 					))}
 				</ul>
 				<label>
+				{validationErrors.email && <p className="error">{validationErrors.email}</p>}
 
-
-				{console.log("EMAIL VALIDATION ERRRORR ---------",validationErrors.email)}
 					Email
 					<input
 						type="text"
@@ -77,6 +76,8 @@ function SignupFormModal() {
 					/>
 				</label>
 				<label>
+				{validationErrors.password && <p className="error">{validationErrors.password}</p>}
+
 					Password
 					<input
 						type="password"

@@ -1,12 +1,31 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import { logout } from "../../store/session";
+import { useHistory } from 'react-router-dom';
+import { useModal } from '../../context/Modal';
+import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from '../SignupFormModal';
+
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
-	console.log("thhissss is session user infor===========",sessionUser)
+	const dispatch=useDispatch()
+	const history=useHistory()
+	const {setModalContent}=useModal()
+
+
+	const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+    history.push("/")
+    
+  };
+  const openModal = (modalComponent) => {
+	setModalContent(modalComponent);
+  };
 	return (
 		<div>
 
@@ -21,14 +40,17 @@ function Navigation({ isLoaded }){
 <li>Hi, <NavLink exact to="/profile" >{sessionUser?.username}</NavLink></li>
 			<li>Help</li>
 			<li>Settings</li>
-			<li>Log Out</li>
+			<li className='modal-text' onClick={handleLogout}>Log Out</li>
 				</>
 				}
 				{!sessionUser &&
 				<div className='login-signup'> 
-				<li>Login</li>
+			
+				<div className='modal-text' onClick={()=>openModal(<LoginFormModal/>)}>Log in</div>
+				
+
 				<div className='vertical-line'></div>
-			<li>Sign Up</li>
+			<li  className='modal-text' onClick={()=>openModal(<SignupFormModal/>)}>Sign Up</li>
 				</div>
 				}
 			
