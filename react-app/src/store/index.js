@@ -4,12 +4,14 @@ import session from './session'
 import profileReducer from './profile';
 import mealReducer from './meals';
 import calorieReducer from './calories';
+import weightReducer from './weightGoal';
 
 const rootReducer = combineReducers({
   session,
   profile:profileReducer,
   meal:mealReducer,
   calorieReducer:calorieReducer || null,
+  weightReducer:weightReducer
 });
 
 

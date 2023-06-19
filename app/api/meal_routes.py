@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from app.models.meal_log import Meal_Log
+from app.models.pet_profile import Profile
 from flask_login import login_required, current_user
 from app.models.db import db
 from app.forms.meal_form import MealForm
@@ -23,9 +24,14 @@ def get_current_meals_details():
     """
     Gets meal logs of current user
     """
-    meal_logs = Meal_Log.query.filter(Meal_Log.profile_id==current_user.id).all()
-    meal_logs_list = [meal.to_dict() for meal in meal_logs]
-    # print("cuuureent user info", current_user)
+    dogs_owned_by_current_user=Profile.query.filter(Profile.user_id==current_user.id).all()
+
+    meal_logs_for_each_dog = []
+    for profile in dogs_owned_by_current_user:
+        meal_log=Meal_Log.query.filter(Meal_Log.profile_id==profile.id)
+        meal_logs_for_each_dog.extend(meal_log)
+    meal_logs_list = [meal.to_dict() for meal in meal_logs_for_each_dog]
+    print("cuuureent user info meal logs---------------------", meal_logs_list)
     return jsonify(meal_logs_list)
 
 @meal_routes.route('/details/<int:id>')

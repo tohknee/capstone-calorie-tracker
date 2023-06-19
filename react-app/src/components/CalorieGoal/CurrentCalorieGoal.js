@@ -21,6 +21,8 @@ const GetCurrentCalorieGoals = () => {
             <div>
                 <div>{goal.calorie_goal}</div>
                 <div>{goal.date}</div>
+                <div>dog id {goal.dog_id}</div>
+                <br></br>
             </div>
         ))}
         

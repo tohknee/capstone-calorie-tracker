@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect} from "react";
 import { thunkCurrentUserMealLogs } from "../../store/meals";
-import { useParams } from "react-router-dom";
+import { useParams ,useHistory} from "react-router-dom";
 import MealForm from "./MealForm";
 
 const CreateMealLog=()=> {
     const dispatch=useDispatch()
+    const history=useHistory
+    const {petId}=useParams
     const mealsObj=useSelector(state=>state.meal) 
     const mealsArray=Object.values(mealsObj)
     console.log("IN THE CREATE",mealsObj)
@@ -20,7 +22,7 @@ const CreateMealLog=()=> {
         portion_size:"",
         meal_calories:"",
         category:"",
-        // petId:petId
+        petId:petId
     }
     console.log("this is the meeeal",meal)
     return (

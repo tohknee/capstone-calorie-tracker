@@ -3,6 +3,7 @@ import { useEffect, Fragment } from "react";
 import { thunkCurrentUserMealLogs } from "../../store/meals";
 import OpenModalButton from "../OpenModalButton";
 import { Link } from "react-router-dom"
+import "./MealLogs.css"
 import DeleteMealLog from "./DeleteMealLog";
 
 
@@ -14,37 +15,52 @@ const GetCurrentMealLogs=()=>{
     useEffect(()=>{
         dispatch(thunkCurrentUserMealLogs())
     },[dispatch])
+
+    
     console.log("THIS IS MEAL LOGS",logs)
 
     if(!logs){
         return "loading..."
     }
 
+    // const mealCategory=(category)=>{
+    //   switch (category) {
+    //     case "breakfast":
+    //       return <h2>Breakfast</h2>
+    //     case "lunch":
+    //       return <h2>Lunch</h2>
+    //     case "dinner":
+    //       return <h2>Dinner</h2>
+    //       default:
+    //         return null;
+    //   }
+    // }
+
     return (
-        <>
+      <div className="meal-log-container">
         <h1>MEAL LOGS</h1>
-        <div>
-  {logsArray.map((log) => {
-    return (
-      <div key={log.id}>
-        <div>Category: {log.category}</div>
-        <div>Meal Calories: {log.meal_calories}</div>
-        <div>Servings: {log.portion_size}</div>
-        <Link to={`/meals/edit/${log.id}`}>
-            <button>
-                Edit Meal Log
-            </button>
-        </Link>
-        <OpenModalButton
-                        buttonText="Remove Meal Log"
-                        modalComponent={<DeleteMealLog mealId={log.id} />}
-                    />
-        <br></br>
+        <div className="meal-log-list">
+          <ul className="meal-log-items">
+            {logsArray.map((log) => {
+              return (
+                <li key={log.id} className="meal-log-item">
+                  <div>Category: {log.category}</div>
+                  <div>Meal Calories: {log.meal_calories}</div>
+                  <div>Servings: {log.portion_size}</div>
+                  <Link to={`/meals/edit/${log.id}`}>
+                    <button className="edit-button">Edit Meal Log</button>
+                  </Link>
+                  <OpenModalButton
+                    buttonText="Remove Meal Log"
+                    modalComponent={<DeleteMealLog mealId={log.id} />}
+                  />
+               
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     );
-  })}
-</div>
-</>
-);
-};
+  };
 export default GetCurrentMealLogs

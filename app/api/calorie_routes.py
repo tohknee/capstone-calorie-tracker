@@ -22,12 +22,19 @@ calorie_routes=Blueprint("calorie", __name__)
 @login_required
 def get_current_calorie_details():
     """
-    Gets calorie goal and calorie logs of current user
+    Gets calorie goal and calorie logs of current user's pets
     """
-    calorie_details = Calorie_Goal.query.filter(Calorie_Goal.profile_id==current_user.id).all()
-    calorie_details_dict = [calorie.to_dict() for calorie in calorie_details]
-    print("cuuureent user info", current_user)
+    dogs_owned_by_current_user=Profile.query.filter(Profile.user_id==current_user.id).all()
+    calorie_details_for_each_dog=[]
+    for profile in dogs_owned_by_current_user:
+        caloric_goal=Calorie_Goal.query.filter(Calorie_Goal.profile_id==profile.id).all()
+        calorie_details_for_each_dog.extend(caloric_goal)
+    calorie_details_dict = [calorie.to_dict() for calorie in calorie_details_for_each_dog]
     return jsonify(calorie_details_dict)
+
+
+
+    print("cuuureent user info", current_user)
 
 @calorie_routes.route('/details/<int:id>')
 @login_required
@@ -78,5 +85,5 @@ def delete_calorie_goal(id):
     if any(profile.id == calorie_goal.profile.id for profile in pet_profiles):
         db.session.delete(calorie_goal)
         db.session.commit()
-        return jsonify({'message': 'Meal log deleted successfully!'}), 200
+        return jsonify({'message': 'Calorie goal deleted successfully!'}), 200
     return jsonify({'error': 'You do not own this meal log'}), 401

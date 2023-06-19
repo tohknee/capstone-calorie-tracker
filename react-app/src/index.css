@@ -1,1 +1,11 @@
 /* TODO Add site wide styles */
+button {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+}
+
+button :hover {
+    background-color: #0056b3;
+}

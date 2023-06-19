@@ -1,0 +1,45 @@
+.meal-log-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+    height: 100vh;
+  }
+  
+  .meal-log-list {
+    list-style-type: none;
+    /* padding: 0; */
+    width: 70%;
+  }
+  
+  .meal-log-items {
+
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    list-style-type: none;
+    width: 100%;
+  }
+  
+  .meal-log-item {
+    display: flex;
+    /* background-color: blue; */
+    width: 100%;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .edit-button {
+    background-color: #007bff;
+    color: #fff;
+    /* padding: 5px 10px; */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .edit-button:hover {
+    background-color: #0056b3;
+  }
+  

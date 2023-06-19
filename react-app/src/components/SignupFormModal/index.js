@@ -11,10 +11,25 @@ function SignupFormModal() {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
+	const [validationErrors, setValidationErrors] = useState({})
+
+
 	const { closeModal } = useModal();
+
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+
+		let newErrors={}
+		if (!email) newErrors.email = "Email is required"
+		if (!username) newErrors.username = "Username is required"
+		if (!password) newErrors.password = "Password is required"
+		setValidationErrors(newErrors)
+
+
+
+
 		if (password === confirmPassword) {
 			const data = await dispatch(signUp(username, email, password));
 			if (data) {
@@ -32,13 +47,16 @@ function SignupFormModal() {
 	return (
 		<>
 			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} noValidate>
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
 				<label>
+
+
+				{console.log("EMAIL VALIDATION ERRRORR ---------",validationErrors.email)}
 					Email
 					<input
 						type="text"
@@ -48,6 +66,8 @@ function SignupFormModal() {
 					/>
 				</label>
 				<label>
+				{validationErrors.username && <p className="error">{validationErrors.username}</p>}
+
 					Username
 					<input
 						type="text"
