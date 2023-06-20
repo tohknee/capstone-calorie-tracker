@@ -31,7 +31,13 @@ function Navigation({ isLoaded }){
 
 		<ul className='website-top'>
 			<div className='logo-text'>
+				{sessionUser&&
 			<li className='logo'><NavLink exact to="/profile" className="logo">poundhound</NavLink></li>
+				}
+				{!sessionUser&&
+							<li className='logo'><NavLink exact to="/public/about" className="logo">poundhound</NavLink></li>
+
+				}
 			</div>
 			
 
@@ -65,7 +71,7 @@ function Navigation({ isLoaded }){
 			</li> */}
 			<li className='list-div ' > 
 			{!sessionUser &&  
-			<NavLink className="nav-link" exact to='/'>About </NavLink>
+			<NavLink className="nav-link" exact to='/public/about'>About </NavLink>
 			}
 			{sessionUser && 
 				<NavLink exact to="/profile" className="nav-link">My Pet Profiles</NavLink>
@@ -74,14 +80,14 @@ function Navigation({ isLoaded }){
 			</li>
 			{!sessionUser && 
 			<li className='list-div'>
-			<NavLink exact to="/" className="nav-link">Pet Profiles</NavLink>
+			<NavLink exact to="/public/profiles" className="nav-link">Pet Profiles</NavLink>
 		</li> }
 			{sessionUser && 
 				<li className='list-div'>
 				<NavLink exact to="/profile/new" className="nav-link">New Pet Profile</NavLink>
 			</li>
 }{!sessionUser &&  <li className='list-div'> 
-				<NavLink exact to="/" className="nav-link"> Pet Food Macros</NavLink>
+				<NavLink exact to="/public/macros" className="nav-link"> Example Calorie Goals</NavLink>
 			</li>}
 			
 		{sessionUser && 
@@ -91,7 +97,7 @@ function Navigation({ isLoaded }){
 		}
 		{!sessionUser && 	
 		<li className='list-div'>
-				<NavLink exact to="/" className="nav-link">Example Calorie goals </NavLink>
+				<NavLink exact to="/public/meals" className="nav-link">Meal Ideas</NavLink>
 			</li> }
 			{sessionUser && 
 	<li className='list-div'>
@@ -100,11 +106,7 @@ function Navigation({ isLoaded }){
 			}
 		
 		</div>
-		{isLoaded && (
-
-<ProfileButton className="profile-dropdown" user={sessionUser} />
-
-)}
+		
 			
 		</ul>
 		

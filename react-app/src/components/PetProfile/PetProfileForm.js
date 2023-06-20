@@ -62,7 +62,7 @@ const PetProfileForm = ({ profile, formType }) => {
           {validationErrors.dog_name ? (
             <p className="errors">{validationErrors.dog_name}</p>
           ) : null}
-          <label htmlFor="dog_name">Dog Name:</label>
+          <label htmlFor="dog_name">*Dog Name:</label>
           <input
             type="text"
             id="dog_name"
@@ -124,7 +124,11 @@ const PetProfileForm = ({ profile, formType }) => {
             onChange={(e) => setGender(e.target.value)}
           />
         </div>
+        <label>* required fields</label>
+        <div>
+
         <button type="submit">Submit</button>
+        </div>
       </form>
     </>
   );

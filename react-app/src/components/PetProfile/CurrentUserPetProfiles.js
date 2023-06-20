@@ -66,12 +66,12 @@ return (
             </Link>
             </div>
             <div className="action-div">
-                <button className="action-button modal-button">
+                {/* <button className="action-button modal-button"> */}
             <OpenModalButton 
               buttonText="Remove Pet"
               modalComponent={<DeletePetProfile profileId={profile.id} />}
               />
-              </button>
+              {/* </button> */}
             </div>
           </div>
         </div>

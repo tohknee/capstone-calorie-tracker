@@ -15,8 +15,9 @@
     padding: 1rem;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 20%;
+    width: 20rem;
     height:30rem;
+    overflow: hidden;
   }
   
   .profile-info {
@@ -48,6 +49,7 @@ align-items: center;
     /* height: 4rem;
     width: 4rem; */
   }
+  
   
   /* Additional styles as needed */
   

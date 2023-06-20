@@ -13,6 +13,12 @@ import GetCurrentMealLogs from "./components/MealLogs/CurrentUserMealLog";
 import CreateMealLog from "./components/MealLogs/CreateMealLog";
 import EditMealLog from "./components/MealLogs/EditMealLog";
 import GetCurrentCalorieGoals from "./components/CalorieGoal/CurrentCalorieGoal.js"
+import SearchBar from "./components/SearchBar/Searchbar";
+import ExampleCalories from "./components/PublicExamples/CalorieGoals";
+import ExampleMacros from "./components/PublicExamples/PetFoodMacros";
+import PublicProfiles from "./components/PublicExamples/PetProfiles";
+import AboutPage from "./components/PublicExamples/About";
+import ExampleMeals from "./components/PublicExamples/CalorieGoals";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -31,6 +37,14 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route exact path="/" component={SearchBar}></Route>
+          <Route exact path="/results" component={SearchBar}></Route>
+
+          <Route exact path="/public/meals" component={ExampleMeals}></Route>
+          <Route exact path="/public/macros" component={ExampleMacros}></Route>
+          <Route exact path="/public/profiles" component={PublicProfiles}></Route>
+          <Route exact path="/public/about" component={AboutPage}></Route>
+
           <Route exact path="/profile" component={GetCurrentPetProfiles}></Route>
           <Route exact path="/profile/new" component={CreateProfile}></Route>
           <Route exact path='/profile/:profileId' component={GetOnePetProfile}></Route>
