@@ -28,7 +28,8 @@ const PetProfileForm = ({ profile, formType }) => {
 
     let errors = {};
     if (!dog_name) errors.dog_name = "Pet name required.";
-    // if(!breed) errors.breed=
+    if(weight>300) errors.weight="Is your dog really over 300lbs?"
+    if(age>30) errors.age= "Your dog is old! Check in on them and the age input"
     setValidationErrors(errors);
 
     if (!!Object.keys(errors).length) return;
@@ -93,6 +94,9 @@ const PetProfileForm = ({ profile, formType }) => {
         </div>
 
         <div>
+        {validationErrors.weight ? (
+            <p className="errors">{validationErrors.weight}</p>
+          ) : null}
           <label htmlFor="weight">Weight (lbs):</label>
           <input
             type="number"
@@ -105,6 +109,9 @@ const PetProfileForm = ({ profile, formType }) => {
           />
         </div>
         <div>
+        {validationErrors.age ? (
+            <p className="errors">{validationErrors.age}</p>
+          ) : null}
           <label htmlFor="age">Age (years):</label>
           <input
             type="number"

@@ -19,6 +19,13 @@ const MealForm = ({ meal, formType }) => {
     dispatch(thunkCurrentUserMealLogs());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (portion_size) {
+      const calculatedCalories = portion_size * 400;
+      setCalories(calculatedCalories);
+    }
+  }, [portion_size]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -56,16 +63,9 @@ const MealForm = ({ meal, formType }) => {
           <input
             type="number"
             step="0.5"
+            max={12}
             value={portion_size}
             onChange={(e) => setPortion(e.target.value)}
-          />
-        </label>
-        <label>
-          Meal Calories:
-          <input
-            type="text"
-            value={meal_calories}
-            onChange={(e) => setCalories(e.target.value)}
           />
         </label>
         <label>
@@ -73,13 +73,25 @@ const MealForm = ({ meal, formType }) => {
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-          >
+            >
             <option value="">Select a category</option>
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>
             <option value="dinner">Dinner</option>
           </select>
         </label>
+            <label>
+             
+              <div>
+              Meal Calories(1 cup = 400 calories):
+              </div>
+              <div>Your pet consumed {meal_calories} calories for {category}. </div>
+              {/* <input
+                type="text"
+                value={meal_calories}
+                onChange={(e) => setCalories(e.target.value)}
+              /> */}
+            </label>
         <button type="submit">Submit</button>
       </form>
     </>
