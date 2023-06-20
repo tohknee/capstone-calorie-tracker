@@ -22,7 +22,7 @@ function SignupFormModal() {
 
 
 		let newErrors={}
-		if (!email) newErrors.email = "Email is required"
+		if (!email) newErrors.email = "Email is required.(example@email.com)"
 		if (!username) newErrors.username = "Username is required"
 		if (!password) newErrors.password = "Password is required"
 		setValidationErrors(newErrors)

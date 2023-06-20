@@ -32,7 +32,6 @@ const MealForm = ({ meal, formType }) => {
 
     let errors = {};
     if (!portion_size) errors.portion_size = "Portion size required.";
-    if (!meal_calories) errors.meal_calories = "Meal calories required";  
     if (!category) errors.category= "Please Select a category"
     setErrors(errors)
     if (!!Object.keys(errors).length) return;
@@ -61,6 +60,9 @@ const MealForm = ({ meal, formType }) => {
     <>
       <form onSubmit={handleSubmit}>
         <label>
+        {errors.portion_size ? (
+            <p className="errors">{errors.portion_size}</p>
+          ) :null}
           Portion Size (cups):
           <input
             type="number"
