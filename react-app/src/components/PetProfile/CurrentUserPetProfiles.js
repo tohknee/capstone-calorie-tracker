@@ -9,6 +9,7 @@ import "./PetProfile.css"
 const GetCurrentPetProfiles = () => {
     const dispatch = useDispatch()
     const profiles=useSelector(state=>state.profile)
+    const loggedIn=useSelector((state)=>state.session)
 
     const profilesArray = Object.values(profiles)
 
@@ -16,6 +17,7 @@ const GetCurrentPetProfiles = () => {
         dispatch(thunkCurrentUserPets())
     },[dispatch])
 
+    if(loggedIn.user===null) return "Please Log in to view profile."
 
 if(!profiles){
     return "loading..."
@@ -56,12 +58,14 @@ return (
             </Link>
             </div>
             <div className="action-div">
-            <Link to={`/profile/edit/${profile.id}`}>
+            {/* <Link to={`/profile/edit/${profile.id}`}> */}
+            <Link to={'/coming-soon'}>
               <button className="action-button">Add calorie goal</button>
             </Link>
             </div>
             <div className="action-div">
-            <Link to={`/profile/edit/${profile.id}`}>
+            {/* <Link to={`/profile/edit/${profile.id}`}> */}
+            <Link to={'/coming-soon'}>
               <button className="action-button">Add weight goal</button>
             </Link>
             </div>

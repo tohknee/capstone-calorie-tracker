@@ -14,6 +14,7 @@ const MealForm = ({ meal, formType }) => {
   const [portion_size, setPortion] = useState(meal?.portion_size);
   const [meal_calories, setCalories] = useState(meal?.meal_calories);
   const [category, setCategory] = useState(meal?.category);
+  const [errors,setErrors] = useState("")
 
   useEffect(() => {
     dispatch(thunkCurrentUserMealLogs());
@@ -31,8 +32,9 @@ const MealForm = ({ meal, formType }) => {
 
     let errors = {};
     if (!portion_size) errors.portion_size = "Portion size required.";
-    if (!meal_calories) errors.meal_calories = "Meal calories required";
-
+    if (!meal_calories) errors.meal_calories = "Meal calories required";  
+    if (!category) errors.category= "Please Select a category"
+    setErrors(errors)
     if (!!Object.keys(errors).length) return;
 
     meal = {
@@ -63,12 +65,16 @@ const MealForm = ({ meal, formType }) => {
           <input
             type="number"
             step="0.5"
-            max={12}
+            min="0.5"
+            max="12"
             value={portion_size}
             onChange={(e) => setPortion(e.target.value)}
           />
         </label>
         <label>
+          {errors.category ? (
+            <p className="errors">{errors.category}</p>
+          ) :null}
           Category:
           <select
             value={category}

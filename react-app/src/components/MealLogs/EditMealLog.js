@@ -9,12 +9,16 @@ const EditMealLog = () => {
     const dispatch=useDispatch()
     const {mealId} =useParams()
     const singeMeal= useSelector(state=>state.meal[mealId])
+    const loggedIn=useSelector((state)=>state.session)
+
 
     console.log("In Meal edittt",singeMeal)
 
     useEffect(()=>{
         dispatch(thunkGetOneMealLog(mealId))
     },[dispatch])
+
+    if (loggedIn.user===null) return "Please Log in to edit profile."
 
     if(!singeMeal) return "Meal Log not found."
     

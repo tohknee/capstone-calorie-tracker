@@ -8,8 +8,9 @@ const GetOnePetProfile = () => {
   const dispatch = useDispatch();
   const { profileId } = useParams();
   const profile = useSelector((state) => state.profile[profileId]);
+  const loggedIn=useSelector((state)=>state.session)
   const calorieGoal = useSelector((state) => state.calorieReducer);
-  console.log("THIS IS GET ONE PROFILE", profile);
+  console.log("THIS IS GET ONE PROFILE", loggedIn);
   console.log("THIS IS GET calorie goa", calorieGoal);
 
   useEffect(() => {
@@ -17,7 +18,12 @@ const GetOnePetProfile = () => {
     dispatch(thunkCurrentPetCalorieGoals(profileId));
   }, [dispatch, profileId]);
 
+  if (loggedIn.user===null) return "Please Log in to view profile."
+  
   if (!profile) return "Profile does not exist";
+
+
+  
   return (
     <div>
       {console.log(profile)}

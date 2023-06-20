@@ -19,6 +19,7 @@ import ExampleMacros from "./components/PublicExamples/PetFoodMacros";
 import PublicProfiles from "./components/PublicExamples/PetProfiles";
 import AboutPage from "./components/PublicExamples/About";
 import ExampleMeals from "./components/PublicExamples/CalorieGoals";
+import ComingSoon from "./components/BonusFeatureSoon/ComingSoon";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -39,6 +40,8 @@ function App() {
           </Route>
           <Route exact path="/" component={SearchBar}></Route>
           <Route exact path="/results" component={SearchBar}></Route>
+          <Route exact path="/coming-soon" component={ComingSoon}></Route>
+
 
           <Route exact path="/public/meals" component={ExampleMeals}></Route>
           <Route exact path="/public/macros" component={ExampleMacros}></Route>

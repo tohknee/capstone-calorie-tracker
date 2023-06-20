@@ -99,12 +99,12 @@ function Navigation({ isLoaded }){
 		<li className='list-div'>
 				<NavLink exact to="/public/meals" className="nav-link">Meal Ideas</NavLink>
 			</li> }
-			{sessionUser && 
+			{/* {sessionUser && 
 	<li className='list-div'>
 				<NavLink exact to="/calories/all" className="nav-link">All your Pets calorie goals </NavLink>
 			</li>
 			}
-		
+		 */}
 		</div>
 		
 			

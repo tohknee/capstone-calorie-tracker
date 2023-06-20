@@ -17,14 +17,14 @@ const GetCurrentMealLogs=()=>{
         dispatch(thunkCurrentUserMealLogs())
     },[dispatch])
 
-    
-    console.log("THIS IS MEAL LOGS",logs)
-
+    console.log('this is llooooggs"',logs)
     if(!logs){
         return "loading..."
     }
 
-
+    if(Object.keys(logs).length===0){
+      return "You have no meals. Please Log in or create a new meal log."
+    }
 
     return (
       <div className="meal-log-container">

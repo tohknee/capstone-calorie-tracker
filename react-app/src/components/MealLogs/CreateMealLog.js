@@ -9,18 +9,15 @@ const CreateMealLog=()=> {
     const history=useHistory
     const {petId}=useParams
     const mealsObj=useSelector(state=>state.meal) 
-    // const pets=useSelector(state=>state.profile)
+    const loggedIn=useSelector((state)=>state.session)
 
-    // const petIdToInt=parseInt(petId,10)
-    // const currentPet=pets[petIdToInt]
-    const mealsArray=Object.values(mealsObj)
-    // console.log("IN THE CREATE",mealsObj)
-    // console.log("IN THE CREATasdasdadsE",currentPet)
-    // console.log("IN THE THIS IS THE PETS PROFILE OBJECT",pets)
     
+    const mealsArray=Object.values(mealsObj)
+ 
+    // if (loggedIn.user===null) return "Please Log in to add a meal log."
+
 
     useEffect(()=>{
-        // console.log("THIS IS WORKING IN CREATE MEAL LOG")
         dispatch(thunkCurrentUserMealLogs())
     },[dispatch])
 

@@ -16,6 +16,10 @@ const GetCurrentCalorieGoals = () => {
     if(!goals){
         return "No goal found."
     }
+
+    if(Object.keys(goals).length===0){
+       return "You have no calorie goals. Log in or create a new calorie goal."
+    }
     return (
             <div className="calorie-goals-container">
               {goalsArray.map((goal) => (

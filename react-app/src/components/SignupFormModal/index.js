@@ -48,13 +48,15 @@ function SignupFormModal() {
 		<>
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit} >
-				{/* <ul>
+				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
-				</ul> */}
+				</ul>
 				<label>
-				{validationErrors.email && <p className="error">{validationErrors.email}</p>}
+				 {validationErrors.email && (
+            <p className="error">{validationErrors.email}</p>
+          )}
 
 					Email
 					<input

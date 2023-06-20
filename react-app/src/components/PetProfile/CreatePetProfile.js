@@ -6,8 +6,8 @@ import { thunkCurrentUserPets } from "../../store/profile";
 const CreateProfile=()=> {
     const dispatch=useDispatch()
     const profilesObj=useSelector(state=>state)
-    const sessionUserId=useSelector(state=>state.session.user.id)
-    const userId = sessionUserId
+    const sessionUserId=useSelector(state=>state.session.user?.id)
+    const userId = sessionUserId || null
 
     useEffect(()=>{
         dispatch(thunkCurrentUserPets())
@@ -21,13 +21,11 @@ const CreateProfile=()=> {
         gender:"",
         userId:userId
     }
-
-    
+    if (userId===null) {
+       return  "Please log in to create a new pet profile"
+    }
     return (
         <>
-        {console.log("Create profile js ",sessionUserId)}
-        {console.log("Create profile js ",profilesObj)}
-    
         <PetProfileForm
         formType="Create Profile"
         profile={profile}
