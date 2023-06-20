@@ -47,12 +47,12 @@ function SignupFormModal() {
 	return (
 		<>
 			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit} noValidate>
-				<ul>
+			<form onSubmit={handleSubmit} >
+				{/* <ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
-				</ul>
+				</ul> */}
 				<label>
 				{validationErrors.email && <p className="error">{validationErrors.email}</p>}
 
@@ -61,7 +61,7 @@ function SignupFormModal() {
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
-						required
+						
 					/>
 				</label>
 				<label>
@@ -72,7 +72,7 @@ function SignupFormModal() {
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
-						required
+						
 					/>
 				</label>
 				<label>
@@ -83,7 +83,7 @@ function SignupFormModal() {
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
-						required
+						
 					/>
 				</label>
 				<label>
@@ -92,7 +92,7 @@ function SignupFormModal() {
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
+						
 					/>
 				</label>
 				<button type="submit">Sign Up</button>

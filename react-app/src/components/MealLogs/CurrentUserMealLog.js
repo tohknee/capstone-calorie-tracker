@@ -23,18 +23,7 @@ const GetCurrentMealLogs=()=>{
         return "loading..."
     }
 
-    // const mealCategory=(category)=>{
-    //   switch (category) {
-    //     case "breakfast":
-    //       return <h2>Breakfast</h2>
-    //     case "lunch":
-    //       return <h2>Lunch</h2>
-    //     case "dinner":
-    //       return <h2>Dinner</h2>
-    //       default:
-    //         return null;
-    //   }
-    // }
+
 
     return (
       <div className="meal-log-container">
@@ -44,8 +33,8 @@ const GetCurrentMealLogs=()=>{
             {logsArray.map((log) => {
               return (
                 <li key={log.id} className="meal-log-item">
-                  <div>Category: {log.category}</div>
-                  <div>Meal Calories: {log.meal_calories}</div>
+                  <div>Category: {log.category} </div>
+                  <div>Meal Calories: {log.meal_calories} </div>
                   <div>Servings: {log.portion_size}</div>
                   <Link to={`/meals/edit/${log.id}`}>
                     <button className="edit-button">Edit Meal Log</button>

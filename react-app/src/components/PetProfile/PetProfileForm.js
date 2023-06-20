@@ -17,6 +17,7 @@ const PetProfileForm = ({ profile, formType }) => {
   const [weight, setWeight] = useState(profile?.weight);
   const [age, setAge] = useState(profile?.age);
   const [gender, setGender] = useState(profile?.gender);
+  const [validationErrors, setValidationErrors] = useState("");
 
   useEffect(() => {
     dispatch(thunkCurrentUserPets());
@@ -28,6 +29,7 @@ const PetProfileForm = ({ profile, formType }) => {
     let errors = {};
     if (!dog_name) errors.dog_name = "Pet name required.";
     // if(!breed) errors.breed=
+    setValidationErrors(errors);
 
     if (!!Object.keys(errors).length) return;
 
@@ -57,6 +59,9 @@ const PetProfileForm = ({ profile, formType }) => {
       <h1>Pet Profile Form</h1>
       <form onSubmit={handleSubmit}>
         <div>
+          {validationErrors.dog_name ? (
+            <p className="errors">{validationErrors.dog_name}</p>
+          ) : null}
           <label htmlFor="dog_name">Dog Name:</label>
           <input
             type="text"
@@ -67,29 +72,47 @@ const PetProfileForm = ({ profile, formType }) => {
         </div>
         <div>
           <label htmlFor="breed">Breed:</label>
-          <input
-            type="text"
+          <select
             id="breed"
             value={breed}
             onChange={(e) => setBreed(e.target.value)}
-          />
+          >
+            <option value="">Select a breed</option>
+            <option value="mixed">Mixed</option>
+            <option value="labrador">Labrador Retriever</option>
+            <option value="poodle">Poodle</option>
+            <option value="germanshepherd">German Shepherd</option>
+            <option value="bulldog">Bulldog</option>
+            <option value="goldenretriever">Golden Retriever</option>
+            <option value="beagle">Beagle</option>
+            <option value="rottweiler">Rottweiler</option>
+            <option value="boxer">Boxer</option>
+            <option value="dachshund">Dachshund</option>
+            <option value="yorkshireterrier">Yorkshire Terrier</option>
+          </select>
         </div>
+
         <div>
-          <label htmlFor="weight">Weight:</label>
+          <label htmlFor="weight">Weight (lbs):</label>
           <input
-            type="text"
+            type="number"
             id="weight"
             value={weight}
             onChange={(e) => setWeight(e.target.value)}
+            min="0"
+            step="1"
+            max="300"
           />
         </div>
         <div>
-          <label htmlFor="age">Age:</label>
+          <label htmlFor="age">Age (years):</label>
           <input
-            type="text"
+            type="number"
             id="age"
             value={age}
             onChange={(e) => setAge(e.target.value)}
+            min="0"
+            max="30"
           />
         </div>
         <div>
