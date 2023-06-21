@@ -57,9 +57,10 @@ align-items: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    border:  2px solid red;
+    /* border:  2px solid red; */
     height: 3.5rem;
     width: 5rem;
+    margin: 5px;
   }
 
   .action-button {

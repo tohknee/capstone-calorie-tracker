@@ -5,9 +5,9 @@ from sqlalchemy.sql import text
 def seed_profiles():
     demo=Profile(
         user_id=1,
-        dog_name="demo name",
-        breed="breed",
-        weight="weight",
+        dog_name="Leo",
+        breed="Mixed",
+        weight="18",
         age="age",
         gender="gender",
     )

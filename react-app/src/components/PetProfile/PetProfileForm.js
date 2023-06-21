@@ -27,7 +27,7 @@ const PetProfileForm = ({ profile, formType }) => {
     e.preventDefault();
 
     let errors = {};
-    if (!dog_name) errors.dog_name = "Pet name required.";
+    if (!dog_name) errors.dog_name = "Pet name required.(max 12 characters)";
     if(weight>300) errors.weight="Is your dog really over 300lbs?"
     if(age>30) errors.age= "Your dog is old! Check in on them and the age input"
     setValidationErrors(errors);
@@ -67,6 +67,7 @@ const PetProfileForm = ({ profile, formType }) => {
           <input
             type="text"
             id="dog_name"
+            maxLength={12}
             value={dog_name}
             onChange={(e) => setDogName(e.target.value)}
           />
@@ -90,6 +91,7 @@ const PetProfileForm = ({ profile, formType }) => {
             <option value="boxer">Boxer</option>
             <option value="dachshund">Dachshund</option>
             <option value="yorkshireterrier">Yorkshire Terrier</option>
+            <option value="other">Other</option>
           </select>
         </div>
 
@@ -122,7 +124,7 @@ const PetProfileForm = ({ profile, formType }) => {
             max="30"
           />
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="gender">Gender:</label>
           <input
             type="text"
@@ -130,7 +132,7 @@ const PetProfileForm = ({ profile, formType }) => {
             value={gender}
             onChange={(e) => setGender(e.target.value)}
           />
-        </div>
+        </div> */}
         <label>* required fields</label>
         <div>
 
