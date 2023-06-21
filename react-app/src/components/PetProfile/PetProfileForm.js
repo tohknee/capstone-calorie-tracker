@@ -8,6 +8,8 @@ import {
   thunkEditProfile,
 } from "../../store/profile";
 
+import "./PetProfileForm.css"
+
 const PetProfileForm = ({ profile, formType }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -56,10 +58,10 @@ const PetProfileForm = ({ profile, formType }) => {
   };
 
   return (
-    <>
+    <div className="pet-profile-form">
       <h1>Pet Profile Form</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-section">
           {validationErrors.dog_name ? (
             <p className="errors">{validationErrors.dog_name}</p>
           ) : null}
@@ -72,7 +74,7 @@ const PetProfileForm = ({ profile, formType }) => {
             onChange={(e) => setDogName(e.target.value)}
           />
         </div>
-        <div>
+        <div className="form-section">
           <label htmlFor="breed">Breed:</label>
           <select
             id="breed"
@@ -95,7 +97,7 @@ const PetProfileForm = ({ profile, formType }) => {
           </select>
         </div>
 
-        <div>
+        <div className="form-section">
         {validationErrors.weight ? (
             <p className="errors">{validationErrors.weight}</p>
           ) : null}
@@ -139,7 +141,7 @@ const PetProfileForm = ({ profile, formType }) => {
         <button type="submit">Submit</button>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

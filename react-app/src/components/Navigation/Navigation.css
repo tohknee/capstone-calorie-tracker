@@ -14,7 +14,11 @@
   /* padding: 10px; */
   height: 4rem;
 }
-
+.link{
+  list-style: none;
+  text-decoration: none;
+  color:#0072BC;;
+}
 .nav-links{
   list-style: none;
   display: flex;

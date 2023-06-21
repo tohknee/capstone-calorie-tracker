@@ -43,9 +43,9 @@ function Navigation({ isLoaded }){
 
 			<div className='top-links'>
 				{sessionUser&&<>
-<li>Hi, <NavLink exact to="/profile" >{sessionUser?.username}</NavLink></li>
-			<li>Help</li>
-			<li>Settings</li>
+<li>Hi, <NavLink className="link" exact to="/profile" >{sessionUser?.username}</NavLink></li>
+			<li><NavLink className="link"  exact to="/public/about">About</NavLink></li>
+			<li> <NavLink className="link" exact to="/public/macros">Feeding Guidelines</NavLink></li>
 			<li className='modal-text' onClick={handleLogout}>Log Out</li>
 				</>
 				}
@@ -59,9 +59,7 @@ function Navigation({ isLoaded }){
 			<li  className='modal-text' onClick={()=>openModal(<SignupFormModal/>)}>Sign Up</li>
 				</div>
 				}
-			
 		
-			<li>Connect</li>
 			</div>
 		</ul>
 		<ul className='navbar'>
