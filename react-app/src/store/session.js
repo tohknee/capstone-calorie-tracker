@@ -1,6 +1,7 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const CLEAR_PROFILES="session/CLEAR_PROFILE"
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -10,6 +11,10 @@ const setUser = (user) => ({
 const removeUser = () => ({
 	type: REMOVE_USER,
 });
+
+const clearProfiles=()=>({
+	type:CLEAR_PROFILES
+})
 
 const initialState = { user: null };
 
@@ -64,6 +69,7 @@ export const logout = () => async (dispatch) => {
 
 	if (response.ok) {
 		dispatch(removeUser());
+		dispatch(clearProfiles());  //tdispatch action to clear profileds
 	}
 };
 
@@ -100,6 +106,8 @@ export default function reducer(state = initialState, action) {
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		case CLEAR_PROFILES:
+			return{...state,profiles:[]}
 		default:
 			return state;
 	}
