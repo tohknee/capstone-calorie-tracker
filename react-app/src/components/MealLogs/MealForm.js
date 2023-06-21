@@ -8,7 +8,7 @@ import {
   thunkEditMealLog,
 } from "../../store/meals";
 
-const MealForm = ({ meal, formType }) => {
+const MealForm = ({ meal, dogId,formType,currentPetId, }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [portion_size, setPortion] = useState(meal?.portion_size);
@@ -44,13 +44,15 @@ const MealForm = ({ meal, formType }) => {
     };
 
     if (formType === "Create Meal log") {
-      console.log("this is meal form meal", meal);
-      dispatch(thunkCreateMealLog(meal));
+      dispatch(thunkCreateMealLog(meal,dogId));
       dispatch(thunkCurrentUserMealLogs());
       history.push(`/meals/all`);
     }
     if (formType === "Edit Meal Log") {
-      console.log("this is meal form meal", meal);
+      
+      if(meal.pet_id!==currentPetId){
+        return "This pet does not belong to you"
+      }
       dispatch(thunkEditMealLog(meal));
       dispatch(thunkCurrentUserMealLogs());
       history.push(`/meals/all`);

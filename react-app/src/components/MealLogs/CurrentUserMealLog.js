@@ -11,13 +11,13 @@ import DeleteMealLog from "./DeleteMealLog";
 const GetCurrentMealLogs=()=>{
     const dispatch=useDispatch()
     const logs=useSelector(state=>state.meal)
+    const state=useSelector(state=>state)
     const logsArray=Object.values(logs)
 
     useEffect(()=>{
         dispatch(thunkCurrentUserMealLogs())
     },[dispatch])
 
-    console.log('this is llooooggs"',logs)
     if(!logs){
         return "loading..."
     }

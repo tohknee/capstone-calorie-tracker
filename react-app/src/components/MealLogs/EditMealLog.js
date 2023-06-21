@@ -11,9 +11,6 @@ const EditMealLog = () => {
     const singeMeal= useSelector(state=>state.meal[mealId])
     const loggedIn=useSelector((state)=>state.session)
 
-
-    console.log("In Meal edittt",singeMeal)
-
     useEffect(()=>{
         dispatch(thunkGetOneMealLog(mealId))
     },[dispatch])

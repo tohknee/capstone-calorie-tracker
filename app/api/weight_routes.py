@@ -41,7 +41,6 @@ def get_one_calorie_goal(id):
     you can view other goals as well
     """
     weight_goal=Weight_Goal.query.get(id)
-    print ("THIS IS WEIGHT GOAL ===-=-==-==-=======",weight_goal)
     if not weight_goal:
         return jsonify({'error': 'Caloric goal not found'}), 404
     return weight_goal.to_dict()

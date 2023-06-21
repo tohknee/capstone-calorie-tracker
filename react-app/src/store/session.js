@@ -69,7 +69,7 @@ export const logout = () => async (dispatch) => {
 
 	if (response.ok) {
 		dispatch(removeUser());
-		dispatch(clearProfiles());  //tdispatch action to clear profileds
+		// dispatch(clearProfiles());  //tdispatch action to clear profileds
 	}
 };
 

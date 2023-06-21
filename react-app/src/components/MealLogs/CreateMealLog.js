@@ -7,16 +7,12 @@ import MealForm from "./MealForm";
 const CreateMealLog=()=> {
     const dispatch=useDispatch()
     const history=useHistory
-    const {petId}=useParams
+    const {profileId}=useParams()
     const mealsObj=useSelector(state=>state.meal) 
     const loggedIn=useSelector((state)=>state.session)
 
-    
     const mealsArray=Object.values(mealsObj)
  
-    // if (loggedIn.user===null) return "Please Log in to add a meal log."
-
-
     useEffect(()=>{
         dispatch(thunkCurrentUserMealLogs())
     },[dispatch])
@@ -25,14 +21,14 @@ const CreateMealLog=()=> {
         portion_size:"",
         meal_calories:"",
         category:"",
-        petId:petId
+        petId:profileId
     }
-    console.log("this is the meeeal",meal)
     return (
         <>
         <div>New Meal log</div>
         <MealForm
         meal={meal}
+        dogId={profileId}
         formType="Create Meal log"
         ></MealForm>
         </>

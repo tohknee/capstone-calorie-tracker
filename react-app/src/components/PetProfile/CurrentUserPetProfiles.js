@@ -23,7 +23,6 @@ if(!profiles){
     return "loading..."
 }
 
-// console.log("this is working",profilesArray)
 return (
     <>
     <h1>Your Pets</h1>

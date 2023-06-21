@@ -56,7 +56,6 @@ export const thunkCreatePetProfile=(profile)=>async(dispatch)=>{
 }
 
 export const thunkGetOnePetProfile=(profileId)=>async(dispatch)=>{
-    console.log("this is thunk get one profile id",profileId)
     const response = await fetch(`/api/profile/${profileId}`)
 
     if (response.ok) {
@@ -98,7 +97,7 @@ const profileReducer = (state=initialState,action)=>{
                 newState[profile.id]=profile
             })
             return {
-                ...state,
+                // ...state, //this spread the old stuff with the newstuff
                 ...newState
             }
         }

@@ -34,7 +34,6 @@ def get_current_calorie_details():
 
 
 
-    print("cuuureent user info", current_user)
 
 @calorie_routes.route('/details/<int:id>')
 @login_required

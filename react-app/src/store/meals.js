@@ -33,7 +33,6 @@ export const thunkCurrentUserMealLogs=()=>async(dispatch)=>{
     const response = await fetch('/api/meals/all')
     if(response.ok){
         const data=await response.json()
-        console.log("this is the thunk data", data)
         dispatch(loadCurrentUserMealLogs(data))
     }
     else {
@@ -43,7 +42,6 @@ export const thunkCurrentUserMealLogs=()=>async(dispatch)=>{
 
 export const thunkGetOneMealLog=(mealId)=> async (dispatch)=>{
     const response= await fetch(`/api/meals/details/${mealId}`)
-    console.log(mealId)
     if (response.ok) {
         const data = await response.json()
         // dispatch(getOneMealLog(data))
@@ -51,9 +49,9 @@ export const thunkGetOneMealLog=(mealId)=> async (dispatch)=>{
     }
 }
 
-export const thunkCreateMealLog=(meal)=>async(dispatch)=>{
-    console.log("this is meal",meal)
-    const response = await fetch('/api/meals/new',{
+export const thunkCreateMealLog=(meal,dogId)=>async(dispatch)=>{
+
+    const response = await fetch(`/api/meals/dogs/${dogId}/new`,{
         "method": "POST",
         "headers": { 'Content-Type': 'application/json' },
         "body": JSON.stringify(
@@ -96,7 +94,7 @@ const mealReducer = (state=initialState, action)=> {
                 newState[meal.id]=meal
             })
             return {
-                ...state,
+                // ...state,
                 ...newState
             }
         }
@@ -109,6 +107,16 @@ const mealReducer = (state=initialState, action)=> {
                 ...newState
             }
         }
+
+    case CREATE_MEAL_LOG:{
+        const newState={}
+        const newMealLog=action.meal
+        newState[newMealLog.id]=newMealLog
+        return {
+                ...state, //spread old stuff
+                ...newState //plus the new one
+        }
+    }
         // case EDIT_MEAL_LOG:{
         //     const newState={}
         //     const newMealLog= action.meal

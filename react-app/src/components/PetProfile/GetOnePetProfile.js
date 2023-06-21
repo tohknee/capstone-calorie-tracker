@@ -10,8 +10,6 @@ const GetOnePetProfile = () => {
   const profile = useSelector((state) => state.profile[profileId]);
   const loggedIn=useSelector((state)=>state.session)
   const calorieGoal = useSelector((state) => state.calorieReducer);
-  console.log("THIS IS GET ONE PROFILE", loggedIn);
-  console.log("THIS IS GET calorie goa", calorieGoal);
 
   useEffect(() => {
     dispatch(thunkGetOnePetProfile(profileId));
@@ -26,7 +24,6 @@ const GetOnePetProfile = () => {
   
   return (
     <div>
-      {console.log(profile)}
       <div>GET ONE PRFILE</div>
       <div>
         pet name {profile.dog_name} breed {profile.breed}
