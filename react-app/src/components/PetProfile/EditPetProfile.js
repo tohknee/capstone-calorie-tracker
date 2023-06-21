@@ -19,9 +19,9 @@ const EditPetProfile = () => {
 
 
     if(loggedIn.user===null) return "Please Log in to edit profile."
-    if (singleProfile?.user_id !== profileId) {
-        return "You are not authorized to edit this profile."; // Display an error message if the user doesn't own the profile
-    }
+    // if (singleProfile?.user_id !== profileId) {
+    //     return "You are not authorized to edit this profile."; // Display an error message if the user doesn't own the profile
+    // }
     if(!singleProfile) return "Profile not found."
 
     return (
