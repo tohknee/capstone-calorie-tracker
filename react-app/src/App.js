@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
+import NoModalSignup from "./components/LoginSignUpPages/SignUp";
+import NoModalLogin from "./components/LoginSignUpPages/LogIn";
+// import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
@@ -20,6 +22,9 @@ import PublicProfiles from "./components/PublicExamples/PetProfiles";
 import AboutPage from "./components/PublicExamples/About";
 import ExampleMeals from "./components/PublicExamples/CalorieGoals";
 import ComingSoon from "./components/BonusFeatureSoon/ComingSoon";
+
+
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -32,14 +37,16 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
+          {/* <Route path="/login" >
             <LoginFormPage />
-          </Route>
-          <Route path="/signup">
+          </Route> */}
+          <Route exact path="/login" component={NoModalLogin}></Route>
+          {/* <Route path="/signup">
             <SignupFormPage />
-          </Route>
-          <Route exact path="/" component={SearchBar}></Route>
-          <Route exact path="/results" component={SearchBar}></Route>
+          </Route> */}
+          <Route exact path="/signup" component={NoModalSignup}></Route>
+          <Route exact path="/" component={AboutPage}></Route>
+          {/* <Route exact path="/results" component={SearchBar}></Route> */}
           <Route exact path="/coming-soon" component={ComingSoon}></Route>
 
 
@@ -47,6 +54,8 @@ function App() {
           <Route exact path="/public/macros" component={ExampleMacros}></Route>
           <Route exact path="/public/profiles" component={PublicProfiles}></Route>
           <Route exact path="/public/about" component={AboutPage}></Route>
+
+
 
           <Route exact path="/profile" component={GetCurrentPetProfiles}></Route>
           <Route exact path="/profile/new" component={CreateProfile}></Route>

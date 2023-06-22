@@ -30,8 +30,11 @@ const PetProfileForm = ({ profile, formType }) => {
 
     let errors = {};
     if (!dog_name) errors.dog_name = "Pet name required.(max 12 characters)";
+    if(!weight) errors.weight="Please enter a weight. "
     if(weight>300) errors.weight="Is your dog really over 300lbs?"
-    if(age>30) errors.age= "Your dog is old! Check in on them and the age input"
+    if(age>30) errors.age= "Your pet is old! Check in on them and the age input"
+    if(!breed) errors.breed ="Please select an option below."
+    if(!age) errors.age ="Please approximate your pet's age."
     setValidationErrors(errors);
 
     if (!!Object.keys(errors).length) return;
@@ -65,7 +68,7 @@ const PetProfileForm = ({ profile, formType }) => {
           {validationErrors.dog_name ? (
             <p className="errors">{validationErrors.dog_name}</p>
           ) : null}
-          <label htmlFor="dog_name">*Dog Name:</label>
+          <label htmlFor="dog_name">*Dog Name(max:12 characters):</label>
           <input
             type="text"
             id="dog_name"
@@ -75,7 +78,10 @@ const PetProfileForm = ({ profile, formType }) => {
           />
         </div>
         <div className="form-section">
-          <label htmlFor="breed">Breed:</label>
+        {validationErrors.breed ? (
+            <p className="errors">{validationErrors.breed}</p>
+          ) : null}
+          <label htmlFor="breed">*Breed(Please select one from the list):</label>
           <select
             id="breed"
             value={breed}
@@ -101,7 +107,7 @@ const PetProfileForm = ({ profile, formType }) => {
         {validationErrors.weight ? (
             <p className="errors">{validationErrors.weight}</p>
           ) : null}
-          <label htmlFor="weight">Weight (lbs):</label>
+          <label htmlFor="weight">*Weight (lbs):</label>
           <input
             type="number"
             id="weight"
@@ -116,7 +122,7 @@ const PetProfileForm = ({ profile, formType }) => {
         {validationErrors.age ? (
             <p className="errors">{validationErrors.age}</p>
           ) : null}
-          <label htmlFor="age">Age (years):</label>
+          <label htmlFor="age">*Age (years):</label>
           <input
             type="number"
             id="age"

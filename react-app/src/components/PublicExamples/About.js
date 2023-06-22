@@ -2,7 +2,7 @@ import React from "react";
 import SignupFormModal from '../SignupFormModal';
 import { useModal } from '../../context/Modal';
 import { useDispatch, useSelector } from "react-redux";
-
+import "./About.css"
 
 const AboutPage = () => {
   const loggedIn=useSelector((state)=>state.session)
@@ -12,7 +12,7 @@ const AboutPage = () => {
         setModalContent(modalComponent);
       };
   return (
-    <div>
+    <div className="about-page">
       <h1>About Our Site</h1>
       <p>
         Welcome to pound hound! Our site allows you to create
@@ -21,7 +21,7 @@ const AboutPage = () => {
       </p>
       {loggedIn.user===null &&
       
-        <button onClick={()=>openModal(<SignupFormModal/>)}>Get Started</button>
+        <button className="s" onClick={()=>openModal(<SignupFormModal/>)}>Get Started</button>
       }
 
     </div>

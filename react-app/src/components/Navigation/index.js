@@ -52,11 +52,11 @@ function Navigation({ isLoaded }){
 				{!sessionUser &&
 				<div className='login-signup'> 
 			
-				<div className='modal-text' onClick={()=>openModal(<LoginFormModal/>)}>Log in</div>
+				<div className='modal-text'><NavLink className="link" exact to="/login">Log in</NavLink></div>
 				
 
 				<div className='vertical-line'></div>
-			<li  className='modal-text' onClick={()=>openModal(<SignupFormModal/>)}>Sign Up</li>
+			<li  className='modal-text'><NavLink className="link" exact to="/signup" >Sign Up</NavLink></li>
 				</div>
 				}
 		

@@ -3,9 +3,9 @@ import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
-import "./LoginForm.css";
+import "./LogInPage.css";
 
-function LoginFormModal() {
+function NoModalLogin() {
   const dispatch = useDispatch();
   const history=useHistory()
   const [email, setEmail] = useState("");
@@ -30,7 +30,7 @@ function LoginFormModal() {
       .then(closeModal)
   }
   return (
-    <>
+    <div className="login-form">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul>
@@ -57,10 +57,10 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
-          <button onClick={demoLogin}>Login as Demo User</button>
+          <button type="submit" onClick={demoLogin}>Login as Demo User</button>
       </form>
-    </>
+    </div>
   );
 }
 
-export default LoginFormModal;
+export default NoModalLogin;

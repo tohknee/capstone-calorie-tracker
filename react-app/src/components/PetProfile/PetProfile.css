@@ -46,12 +46,15 @@ align-items: center;
   
   .profile-actions button {
     margin-right: 0.5rem;
-    /* height: 4rem;
-    width: 4rem; */
+    height: 4rem;
+    width: 4rem;
+    background-color: #4caf50;
   }
   
-  
-  /* Additional styles as needed */
+  .profile-actions button:hover {
+    background-color: #45a049;
+
+  }
   
   .action-div {
     display: flex;

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useModal } from '../../context/Modal'
 import { thunkGetOnePetProfile, thunkCurrentUserPets,thunkDeleteProfile} from "../../store/profile";
-
+import "./DeleteProfile.css"
 
 const DeletePetProfile=({profileId})=>{
     const dispatch = useDispatch()
@@ -17,16 +17,16 @@ const DeletePetProfile=({profileId})=>{
     }
 
     return (
-        <div>
+        <div className="delete-modal">
         <h1>
-            Are you sure you want to delete your profile?
+            Are you sure you want to delete this profile?
         </h1>
 
-        <button onClick={handleDelete}>
+        <button  type="keep" className="keep-profile" onClick={handleDelete}>
             Yes (Delete pet profile)
         </button>
 
-        <button onClick={closeModal}>
+        <button type="delete" className="delete-profile" onClick={closeModal}>
             Cancel (Keep pet profile )
         </button>
     </div>
