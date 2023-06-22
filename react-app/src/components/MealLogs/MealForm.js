@@ -7,6 +7,7 @@ import {
   thunkCurrentUserMealLogs,
   thunkEditMealLog,
 } from "../../store/meals";
+import "./MealForm.css"
 
 const MealForm = ({ meal, dogId,formType,currentPetId, }) => {
   const dispatch = useDispatch();
@@ -59,7 +60,8 @@ const MealForm = ({ meal, dogId,formType,currentPetId, }) => {
     }
   };
   return (
-    <>
+    <div className="meal-form">
+      <h1>{formType}</h1>
       <form onSubmit={handleSubmit}>
         <label>
         {errors.portion_size ? (
@@ -74,6 +76,7 @@ const MealForm = ({ meal, dogId,formType,currentPetId, }) => {
             value={portion_size}
             onChange={(e) => setPortion(e.target.value)}
           />
+    
         </label>
         <label>
           {errors.category ? (
@@ -104,7 +107,7 @@ const MealForm = ({ meal, dogId,formType,currentPetId, }) => {
             </label>
         <button type="submit">Submit</button>
       </form>
-    </>
+    </div >
   );
 };
 

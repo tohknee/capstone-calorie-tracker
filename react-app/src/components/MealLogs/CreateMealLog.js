@@ -25,7 +25,6 @@ const CreateMealLog=()=> {
     }
     return (
         <>
-        <div>New Meal log</div>
         <MealForm
         meal={meal}
         dogId={profileId}

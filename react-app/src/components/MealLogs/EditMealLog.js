@@ -21,7 +21,6 @@ const EditMealLog = () => {
     
     return (
         <>
-        <h1>EDIT Meal FORM</h1>
         <MealForm
         meal={singeMeal}
         formType="Edit Meal Log"

@@ -1,53 +1,40 @@
-.pet-profile-form {
+.meal-form {
     max-width: 400px;
     margin: 0 auto;
+    /* background-color: blue; */
   }
-  
-  .pet-profile-form h1 {
-    text-align: center;
-  }
-  
-  .pet-profile-form form {
+
+  .meal-form form{
     display: flex;
     flex-direction: column;
   }
-  
-  .pet-profile-form .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .pet-profile-form label {
-    font-weight: bold;
-  }
-  
-  .pet-profile-form input,
-  .pet-profile-form select {
+
+  .meal-form input,
+  .meal-form select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 100%;
   }
-  
-  .pet-profile-form .errors {
+
+  .meal-form .errors {
     color: red;
     margin-top: 5px;
   }
-  
-  .pet-profile-form button[type="submit"] {
+
+  .meal-form button[type="submit"] {
     padding: 10px 20px;
     background-color: #4caf50;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 100%;
   }
-  
-  .pet-profile-form button[type="submit"]:hover {
+
+  .meal-form button[type="submit"]:hover {
     background-color: #45a049;
   }
-  
-  .pet-profile-form label {
+  .meal-form label {
     margin-top: 10px;
     font-size: 14px;
     color: #888;
