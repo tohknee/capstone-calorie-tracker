@@ -37,6 +37,8 @@ const GetCurrentMealLogs=()=>{
                   <div className="meal-log-category">Category: {log.category}</div>
                   <div className="meal-log-calories">Meal Calories: {log.meal_calories}</div>
                   <div className="meal-log-servings">Servings: {log.portion_size}</div>
+                  <div className="action-container">
+
                   <div className="action-div">
                   <Link to={`/meals/edit/${log.id}`}>
                     <button type="edit" className="edit-button">Edit Meal Log</button>
@@ -48,6 +50,7 @@ const GetCurrentMealLogs=()=>{
                     modalComponent={<DeleteMealLog mealId={log.id} />}
                     />
                     </div>
+                  </div>
                 </li>
               );
             })}

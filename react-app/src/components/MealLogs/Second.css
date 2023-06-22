@@ -50,7 +50,7 @@
   }
   
   .edit-button {
-    margin-top: 1rem;
+   
     background-color: #4caf50;
     color: #fff;
     border: none;
@@ -79,4 +79,17 @@
   
   .errors {
     color: red;
+  }
+
+  .action-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    width: 40%;
+    
+  }
+
+  .action-container button{
+  height:  100%;
+  width: 100%;
   }
