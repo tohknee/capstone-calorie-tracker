@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignUpPage.css"
+import { useHistory } from "react-router-dom";
 
 function NoModalSignup() {
 	const dispatch = useDispatch();
@@ -12,13 +13,13 @@ function NoModalSignup() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 	const [validationErrors, setValidationErrors] = useState({})
-
+	const history=useHistory()
 
 
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
+	
 
 		let newErrors={}
 		if (!email) newErrors.email = "Email is required.(example@email.com)"
@@ -34,12 +35,14 @@ function NoModalSignup() {
 			if (data) {
 				setErrors(data);
 			} else {
+				history.push('/profile')
 			}
 		} else {
 			setErrors([
 				"Confirm Password field must be the same as the Password field",
 			]);
 		}
+
 	};
 
 	return (

@@ -11,7 +11,7 @@ function NoModalLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const { closeModal } = useModal();
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ function NoModalLogin() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+       
         history.push('/profile')
     }
   };
@@ -27,7 +27,7 @@ function NoModalLogin() {
     setEmail('demo@aa.io')
     setPassword('password')
     return dispatch(login({ email, password }))
-      .then(closeModal)
+    
   }
   return (
     <div className="login-form">
