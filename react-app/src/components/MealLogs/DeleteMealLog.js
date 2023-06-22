@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useModal } from '../../context/Modal'
 import { thunkCurrentUserMealLogs,thunkDeleteMealLog } from "../../store/meals";
+import "./DeleteMealModal.css"
 
 const DeleteMealLog=({mealId})=>{
     const dispatch = useDispatch()
@@ -16,16 +17,16 @@ const DeleteMealLog=({mealId})=>{
     }
 
     return (
-        <div>
+        <div className="delete-modal">
         <h1>
             Are you sure you want to delete your Meal?
         </h1>
 
-        <button onClick={handleDelete}>
+        <button type="keep" className="keep-profile" onClick={handleDelete}>
             Yes (Delete meal log)
         </button>
 
-        <button onClick={closeModal}>
+        <button type="delete" className="delete-profile"  onClick={closeModal}>
             Cancel (Keep meal log )
         </button>
     </div>
