@@ -49,20 +49,17 @@ def get_one_meal_details(id):
 @meal_routes.route('/dogs/<int:id>/new',methods=["POST"])
 @login_required
 def post_one_meal(id):
-    print("I WENT INSIDE THE POST ROUTE BACKEND 👹")
+  
     """
     Post one meal log for current pet
     """
     form=MealForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     
-    # if form.validate_on_submit():
-    # profile_id=current_user.id
-    # profile_id=id
-    
-    # print("printing current user info",current_user.id)
+
     new_meal_log=Meal_Log(
         profile_id=id,
+        # user_id=current_user.id,
         portion_size=form.portion_size.data,
         meal_calories=form.meal_calories.data,
         category=form.category.data
@@ -79,6 +76,7 @@ def edit_meal_log(id):
     Update a meal log for the current user 
     """ 
     meal_log=Meal_Log.query.get(id)
+    dogs_owned_by_current_user=Profile.query.filter(Profile.user_id==current_user.id).all()
 
     if not meal_log:
         return jsonify({'error': 'Meal log not found'}), 404
@@ -86,7 +84,13 @@ def edit_meal_log(id):
     form=MealForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if meal_log.profile_id ==current_user.id:
+# fix thism. find meal.log profile id to match dog profile, then search dog profile for user id
+    matching_dog=None
+    for dog in dogs_owned_by_current_user:
+        if dog.id==meal_log.profile_id:
+            matching_dog=dog
+            break
+    if matching_dog:
 
         meal_log.portion_size=form.portion_size.data
         meal_log.meal_calories=form.meal_calories.data
@@ -104,10 +108,17 @@ def delete_log(id):
     Delete a meal log for the current user 
     """ 
     meal_log=Meal_Log.query.get(id)
-    
+    dogs_owned_by_current_user=Profile.query.filter(Profile.user_id==current_user.id).all()
+
     if not meal_log:
         return jsonify({'error': 'Meal log not found'}), 404
-    if meal_log.profile_id ==current_user.id:
+    
+    matching_dog=None
+    for dog in dogs_owned_by_current_user:
+        if dog.id==meal_log.profile_id:
+            matching_dog=dog
+            break
+    if matching_dog:
         db.session.delete(meal_log)
         db.session.commit()
         return jsonify({'message': 'Meal log deleted successfully!'}), 200

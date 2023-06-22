@@ -13,7 +13,7 @@ def seed_profiles():
     )
     profile1=Profile(
         user_id=2,
-        dog_name="Leo",
+        dog_name="Leo2",
         breed="Mixed",
         weight="20",
         age="3",
