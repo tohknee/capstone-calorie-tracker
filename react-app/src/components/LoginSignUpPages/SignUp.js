@@ -49,28 +49,28 @@ function NoModalSignup() {
 				<ul>
                 <div className="form-section"></div>
 					{errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
+						<li key={idx}>{error}</li>
                         ))}
 				</ul>
 				<label>
 				 {validationErrors.email && (
-                     <p className="error">{validationErrors.email}</p>
+					 <p className="error">{validationErrors.email}</p>
                      )}
 
-					Email
+					*Email
 					<input
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						
-					/>
+						/>
 				</label>
                      <div className="form-section">
 
 				<label>
 				{validationErrors.username && <p className="error">{validationErrors.username}</p>}
 
-					Username
+					*Username
 					<input
 						type="text"
 						value={username}
@@ -85,7 +85,7 @@ function NoModalSignup() {
 				<label>
 				{validationErrors.password && <p className="error">{validationErrors.password}</p>}
 
-					Password
+					*Password
 					<input
 						type="password"
 						value={password}
@@ -97,7 +97,7 @@ function NoModalSignup() {
                         <div className="form-section">
 
 				<label>
-					Confirm Password
+					*Confirm Password
 					<input
 						type="password"
 						value={confirmPassword}
@@ -106,6 +106,7 @@ function NoModalSignup() {
                         />
 				</label>
                         </div>
+			<div>*Required fields.</div>
 				<button type="submit">Sign Up</button>
 			</form>
 		</div>

@@ -20,13 +20,16 @@
     font-weight: bold;
   }
   
-  .pet-profile-form input,
-  .pet-profile-form select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-  }
+    .pet-profile-form input,
+    .pet-profile-form select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        
+        margin-bottom: 15px;
+        
+    }
   
   .pet-profile-form .errors {
     color: red;

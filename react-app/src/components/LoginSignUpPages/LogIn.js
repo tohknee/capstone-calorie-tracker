@@ -39,7 +39,7 @@ function NoModalLogin() {
           ))}
         </ul>
         <label>
-          Email
+          *Email
           <input
             type="text"
             value={email}
@@ -48,7 +48,7 @@ function NoModalLogin() {
           />
         </label>
         <label>
-          Password
+          *Password
           <input
             type="password"
             value={password}
@@ -56,6 +56,8 @@ function NoModalLogin() {
             
           />
         </label>
+        <div>*Required fields.</div>
+
         <button type="submit">Log In</button>
           <button type="submit" onClick={demoLogin}>Login as Demo User</button>
       </form>

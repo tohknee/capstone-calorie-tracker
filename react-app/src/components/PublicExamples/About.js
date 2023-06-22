@@ -3,6 +3,7 @@ import SignupFormModal from '../SignupFormModal';
 import { useModal } from '../../context/Modal';
 import { useDispatch, useSelector } from "react-redux";
 import "./About.css"
+import { Link } from "react-router-dom";
 
 const AboutPage = () => {
   const loggedIn=useSelector((state)=>state.session)
@@ -20,8 +21,9 @@ const AboutPage = () => {
         and set calorie goals. 
       </p>
       {loggedIn.user===null &&
-      
-        <button className="s" onClick={()=>openModal(<SignupFormModal/>)}>Get Started</button>
+      <Link to="/signup">
+        <button className="s">Get Started</button>
+      </Link>
       }
 
     </div>
