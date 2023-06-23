@@ -30,6 +30,7 @@ const PetProfileForm = ({ profile, formType }) => {
 
     let errors = {};
     if (!dog_name) errors.dog_name = "Pet name required.(max 12 characters)";
+    if(dog_name.trim().length ===0) errors.dog_name ="Pet Name cannot be empty"
     if(!weight) errors.weight="Please enter a weight. "
     if(weight>300) errors.weight="Is your dog really over 300lbs?"
     if(age>30) errors.age= "Your pet is old! Check in on them and the age input"
@@ -107,7 +108,7 @@ const PetProfileForm = ({ profile, formType }) => {
         {validationErrors.weight ? (
             <p className="errors">{validationErrors.weight}</p>
           ) : null}
-          <label htmlFor="weight">*Weight (lbs):</label>
+          <label htmlFor="weight">*Weight (lbs. Max:300lbs):</label>
           <input
             type="number"
             id="weight"
@@ -122,7 +123,7 @@ const PetProfileForm = ({ profile, formType }) => {
         {validationErrors.age ? (
             <p className="errors">{validationErrors.age}</p>
           ) : null}
-          <label htmlFor="age">*Age (years):</label>
+          <label htmlFor="age">*Age (years. Max:30 years):</label>
           <input
             type="number"
             id="age"

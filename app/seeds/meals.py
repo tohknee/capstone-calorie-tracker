@@ -14,6 +14,12 @@ def seed_meals():
         meal_calories="4000",
         category="lunch"
     )
+    meal1=Meal_Log(
+        profile_id=1,
+        portion_size="1.5",
+        meal_calories="1000",
+        category="breakfast"
+    )
     meal3=Meal_Log(
         profile_id=2,
         portion_size="4.5",
