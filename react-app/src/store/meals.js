@@ -44,7 +44,6 @@ export const thunkGetOneMealLog=(mealId)=> async (dispatch)=>{
     const response= await fetch(`/api/meals/details/${mealId}`)
     if (response.ok) {
         const data = await response.json()
-        // dispatch(getOneMealLog(data))
         dispatch(getOneMealLog({ ...data, id: mealId }));
     }
 }
@@ -94,7 +93,6 @@ const mealReducer = (state=initialState, action)=> {
                 newState[meal.id]=meal
             })
             return {
-                // ...state,
                 ...newState
             }
         }
@@ -117,16 +115,7 @@ const mealReducer = (state=initialState, action)=> {
                 ...newState //plus the new one
         }
     }
-        // case EDIT_MEAL_LOG:{
-        //     const newState={}
-        //     const newMealLog= action.meal
-        //     newState[newMealLog.id]=newMealLog //cjamge tjis
-        //     return{
-        //         ...state,
-        //         ...newState
-        //     }
-           
-        // }
+    
         case EDIT_MEAL_LOG: {
             const editedMealLog = action.meal;
             return {
