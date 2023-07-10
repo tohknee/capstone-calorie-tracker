@@ -12,7 +12,7 @@ const GetCurrentPetProfiles = () => {
     const loggedIn=useSelector((state)=>state.session)
 
     const profilesArray = Object.values(profiles)
-
+    const profileId=profiles.id
     useEffect(()=>{
         dispatch(thunkCurrentUserPets())
     },[dispatch])
@@ -25,10 +25,14 @@ if(!profiles){
 
 return (
     <>
+    {console.log("this is profiles",profiles)}
     <h1>Your Pets</h1>
     <div className="pet-profiles">
+   
       {profilesArray.map((profile) => (
+        
         <div className="profile-card" key={profile.id}>
+          <Link to={`profile/${profile.id}`}>
           <div className="profile-info">
             <div>
             Pet Name: {profile.dog_name}
@@ -60,13 +64,13 @@ return (
             {/* <Link to={`/profile/edit/${profile.id}`}> */}
             {/* <Link to={'/coming-soon'}>
               <button className="action-button">Add calorie goal</button>
-            </Link>
+              </Link>
             </div> */}
             {/* <div className="action-div"> */}
             {/* <Link to={`/profile/edit/${profile.id}`}> */}
             {/* <Link to={'/coming-soon'}>
               <button className="action-button">Add weight goal</button>
-            </Link>
+              </Link>
             </div> */}
             <div className="action-div">
                 {/* <button className="action-button modal-button"> */}
@@ -77,6 +81,7 @@ return (
               {/* </button> */}
             </div>
           </div>
+              </Link>
         </div>
       ))}
     </div>
