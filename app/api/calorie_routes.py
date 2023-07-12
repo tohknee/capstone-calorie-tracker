@@ -47,25 +47,25 @@ def get_one_calorie_goal(id):
         return jsonify({'error': 'Caloric goal not found'}), 404
     return calorie_goal.to_dict()
 
-# @calorie_routes.route('/new',methods=["POST"])
-# @login_required
-# def post_one_calorie_goal():
-#     """
-#     Post one caloric goal for current user
-#     """
-#     form=CalorieForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
+@calorie_routes.route('/pets/<int:id>/calorie/new',methods=["POST"])
+@login_required
+def post_one_calorie_goal():
+    """
+    Post one caloric goal for current user
+    """
+    form=CalorieForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-#     profile_id=current_user.id
-#     print("calories route print pet id", profile_id)
-#     new_calorie_goal=Calorie_Goal(
-#         profile_id=profile_id,
-#         calorie_goal=form.calorie_goal.data,
-#         date=form.date.data
-#     )
-#     db.session.add(new_calorie_goal)
-#     db.session.commit()
-#     return new_calorie_goal.to_dict()
+    profile_id=current_user.id
+    print("calories route print pet id", profile_id)
+    new_calorie_goal=Calorie_Goal(
+        profile_id=profile_id,
+        calorie_goal=form.calorie_goal.data,
+        date=form.date.data
+    )
+    db.session.add(new_calorie_goal)
+    db.session.commit()
+    return new_calorie_goal.to_dict()
 
 @calorie_routes.route('/delete/<int:id>', methods=["DELETE"])
 @login_required

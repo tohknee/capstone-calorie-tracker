@@ -3,6 +3,7 @@ import { useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import { thunkGetOnePetProfile } from "../../store/profile";
 import { thunkCurrentPetCalorieGoals } from "../../store/calories";
+import "./SingleProfile.css"
 
 const GetOnePetProfile = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const GetOnePetProfile = () => {
       <div>GET ONE PRFILE</div>
       <div>
         pet name {profile.dog_name} breed {profile.breed}
+        <button className="calorie-button">Set Calorie Goal</button>
       </div>
       {Object.keys(calorieGoal).length > 0 && (
         <div>

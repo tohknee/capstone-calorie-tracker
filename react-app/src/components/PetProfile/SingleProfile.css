@@ -1,0 +1,7 @@
+.calorie-button{
+    background-color:red;
+}
+.calorie-button:hover{
+    background-color:blue;
+    cursor: pointer;
+}

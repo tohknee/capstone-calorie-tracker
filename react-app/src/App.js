@@ -64,7 +64,9 @@ function App() {
           <Route exact path="/meals/all" component={GetCurrentMealLogs}></Route>
           <Route exact path="/profile/:profileId/meals/new" component={CreateMealLog}></Route>
           <Route exact path="/meals/edit/:mealId" component={EditMealLog}></Route>
+    
           <Route exact path= "/calories/all" component={GetCurrentCalorieGoals}></Route>
+          <Route exact path= "/profile/:profileId/calories/new" component={GetCurrentCalorieGoals}></Route>
           
         </Switch>
       )}

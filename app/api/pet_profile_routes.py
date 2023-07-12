@@ -150,13 +150,16 @@ def post_one_calorie_goal(id):
     """
     Post one caloric goal for pet by id
     """
+    
+    # get one pet profile by id
+    pet_profile=Profile.query.get(id)
+    # get all pet profiles that the user owns
+    pet_profiles=Profile.query.filter(Profile.user_id==current_user.id).all()
 
     form=CalorieForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    pet_profile=Profile.query.get(id)
-    # print("calories route print pet id======================================", profile_id.id)
-    pet_profiles=Profile.query.filter(Profile.user_id==current_user.id).all()
+
 
     if not pet_profile:
         return jsonify({'error': 'Pet profile not found'}), 404
