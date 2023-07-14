@@ -40,20 +40,23 @@ export const thunkCurrentUserPets=()=>async(dispatch)=>{
     }
 }
 
-export const thunkCreatePetProfile=(profile)=>async(dispatch)=>{
-    const response = await fetch('/api/profile/new',{
-        "method": "POST",
-        "headers": { 'Content-Type': 'application/json' },
-        "body": JSON.stringify(
-            profile
-        )
-    })
-    if (response.ok){
-        const data = await response.json()
-            dispatch(createProfile(data))
-        
+export const thunkCreatePetProfile = (formData) => async (dispatch) => {
+    try {
+      const response = await fetch('/api/profile/new', {
+        method: 'POST',
+        body: formData,
+      });
+  
+      if (response.ok) {
+        const { resPost } = await response.json();
+        dispatch(createProfile(resPost));
+      } else {
+        console.log('There was an error making your post!');
+      }
+    } catch (error) {
+      console.log('There was an error making your request!', error);
     }
-}
+  };
 
 export const thunkGetOnePetProfile=(profileId)=>async(dispatch)=>{
     const response = await fetch(`/api/profile/${profileId}`)

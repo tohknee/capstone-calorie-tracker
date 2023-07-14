@@ -5,7 +5,6 @@ import { thunkCurrentUserPets } from "../../store/profile";
 
 const CreateProfile=()=> {
     const dispatch=useDispatch()
-    const profilesObj=useSelector(state=>state)
     const sessionUserId=useSelector(state=>state.session.user?.id)
     const userId = sessionUserId || null
 
@@ -19,6 +18,7 @@ const CreateProfile=()=> {
         weight:"",
         age:"",
         gender:"",
+        image:null,
         userId:userId
     }
     if (userId===null) {
