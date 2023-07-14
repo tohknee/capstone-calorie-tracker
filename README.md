@@ -3,6 +3,8 @@
 ## Description
 This project allows users to create pet profiles and add pet photos using AWS. It also provides the functionality to add meal logs for each pet.
 
+![ezgif com-video-to-gif](https://github.com/tohknee/capstone-calorie-tracker/assets/13267560/cd229454-caf2-46e6-a085-b67f674259b4)
+
 ## Usage
 1. Create a pet profile:
    - Provide the pet's name, breed, age, and weight.
