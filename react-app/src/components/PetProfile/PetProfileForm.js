@@ -59,15 +59,25 @@ const PetProfileForm = ({ profile, formType }) => {
     };
 //do validation to dispatch if it comes back
     if (formType === "Create Profile") {
-      // put a if statement to reroute. if call below is below is good then we reroute. otherwise dont reroute
-     const newProfile= await dispatch(thunkCreatePetProfile(formData)); //this is where the 401 is thrown. form data is not accepted or missing
-      dispatch(thunkCurrentUserPets());
-      history.push(`/profile`);
+      try{
+
+        // put a if statement to reroute. if call below is below is good then we reroute. otherwise dont reroute
+        const newProfile= await dispatch(thunkCreatePetProfile(formData)); //this is where the 401 is thrown. form data is not accepted or missing
+        dispatch(thunkCurrentUserPets());
+        history.push(`/profile`);
+      } catch(error){
+        console.log(error)
+      }
     }
     if (formType === "Edit Profile") {
-      dispatch(thunkEditProfile(profile)); //only make this reroute when there is a
-      dispatch(thunkCurrentUserPets());
-      // history.push(`/profile`);
+      try{
+
+        const newProfile= await dispatch(thunkEditProfile(profile)); //only make this reroute when there is a
+        dispatch(thunkCurrentUserPets());
+        history.push(`/profile`);
+      } catch(error){
+        console.log(error)
+      }
     }
   };
 
