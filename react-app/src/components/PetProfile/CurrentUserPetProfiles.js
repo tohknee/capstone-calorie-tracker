@@ -32,7 +32,7 @@ return (
       {profilesArray.map((profile) => (
         
         <div className="profile-card" key={profile.id}>
-          <Link to={`profile/${profile.id}`}>
+          <Link to={`profile/${profile.id}`} className="link">
           <div className="profile-info">
             <div>
             Pet Name: {profile.dog_name}

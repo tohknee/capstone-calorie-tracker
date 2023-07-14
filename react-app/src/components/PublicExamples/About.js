@@ -17,8 +17,9 @@ const AboutPage = () => {
       <h1>About Our Site</h1>
       <p>
         Welcome to pound hound! Our site allows you to create
-        and manage multiple pet profiles, track meal logs, monitor pet weight,
-        and set calorie goals. 
+        and manage multiple pet profiles and track meal logs! 
+        {/* monitor pet weight,
+        and set calorie goals.  */}
       </p>
       {loggedIn.user===null &&
       <Link to="/signup">

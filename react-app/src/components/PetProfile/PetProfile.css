@@ -78,3 +78,9 @@ align-items: center;
   .profile-image {
     border-radius: 50%;
   }
+  
+  .link {
+    color: inherit;
+    text-decoration: none;
+  }
+  
