@@ -20,12 +20,13 @@ const PetProfileForm = ({ profile, formType }) => {
   const [age, setAge] = useState(profile?.age);
   const [gender, setGender] = useState(profile?.gender);
   const [validationErrors, setValidationErrors] = useState("");
+  const [image,setImage]=useState(profile?.image)
 
   useEffect(() => {
     dispatch(thunkCurrentUserPets());
   }, [dispatch]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let errors = {};
@@ -40,6 +41,14 @@ const PetProfileForm = ({ profile, formType }) => {
 
     if (!!Object.keys(errors).length) return;
 
+    const formData = new FormData();
+    formData.append("dog_name", dog_name)
+    formData.append("breed",breed)
+    formData.append("weight",weight)
+    formData.append("age",age)
+    // formData.append("gender",gender)
+    formData.append("image",image)
+
     profile = {
       ...profile,
       dog_name,
@@ -48,23 +57,34 @@ const PetProfileForm = ({ profile, formType }) => {
       age,
       gender,
     };
-
+//do validation to dispatch if it comes back
     if (formType === "Create Profile") {
-      dispatch(thunkCreatePetProfile(profile));
-      dispatch(thunkCurrentUserPets());
-      history.push(`/profile`);
+      try{
+
+        // put a if statement to reroute. if call below is below is good then we reroute. otherwise dont reroute
+        const newProfile= await dispatch(thunkCreatePetProfile(formData)); //this is where the 401 is thrown. form data is not accepted or missing
+        dispatch(thunkCurrentUserPets());
+        history.push(`/profile`);
+      } catch(error){
+        console.log(error)
+      }
     }
     if (formType === "Edit Profile") {
-      dispatch(thunkEditProfile(profile));
-      dispatch(thunkCurrentUserPets());
-      history.push(`/profile`);
+      try{
+
+        const newProfile= await dispatch(thunkEditProfile(profile)); //only make this reroute when there is a
+        dispatch(thunkCurrentUserPets());
+        history.push(`/profile`);
+      } catch(error){
+        console.log(error)
+      }
     }
   };
 
   return (
     <div className="pet-profile-form">
       <h1>Pet Profile Form</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="form-section">
           {validationErrors.dog_name ? (
             <p className="errors">{validationErrors.dog_name}</p>
@@ -144,7 +164,11 @@ const PetProfileForm = ({ profile, formType }) => {
         </div> */}
         <label>* required fields</label>
         <div>
-
+        <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
         <button type="submit">Submit</button>
         </div>
       </form>

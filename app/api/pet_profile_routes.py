@@ -9,6 +9,8 @@ from app.forms.pet_form import PetForm
 from app.forms.calorie_form import CalorieForm
 from app.forms.weight_form import WeightForm
 from app.forms.meal_form import MealForm
+from app.api.AWS_helper import (
+    upload_file_to_s3, get_unique_filename)
 
 profile_routes=Blueprint("profile", __name__)
 
@@ -53,19 +55,38 @@ def post_new_pet():
     """
     form=PetForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("message 😈")
+    if form.validate_on_submit():
+        print ("we hit the validate 🤑")
+        image = form.data["image"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        print(upload, "asdasdsadasdadada🤢")
 
-    new_pet=Profile(
-        user_id=current_user.id,
-        dog_name=form.dog_name.data,
-        breed=form.breed.data,
-        weight=form.weight.data,
-        age=form.age.data,
-        gender=form.gender.data
+        if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message (and we printed it above)
+            return "URL not in upload"
+        
 
-    )
-    db.session.add(new_pet)
-    db.session.commit()
-    return new_pet.to_dict()
+        url = upload["url"]
+        print(url, "asdadsasd💩")
+        new_pet=Profile(
+            user_id=current_user.id,
+            dog_name=form.dog_name.data,
+            breed=form.breed.data,
+            weight=form.weight.data,
+            age=form.age.data,
+            # gender=form.gender.data,
+            image= url
+
+        )
+        db.session.add(new_pet)
+        db.session.commit()
+        return new_pet.to_dict()
+    print(form.errors)
+    return {'errors': "errror"}, 401
 
 @profile_routes.route("/edit/<int:id>",methods=["PUT"])
 @login_required

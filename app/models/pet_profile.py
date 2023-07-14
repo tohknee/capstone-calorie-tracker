@@ -15,6 +15,7 @@ class Profile(db.Model):
     weight=db.Column(db.String(),nullable=False)
     age=db.Column(db.String())
     gender=db.Column(db.String())
+    image=db.Column(db.String())
     created_at= db.Column(db.DateTime(),default=datetime.now)
 
     user =db.relationship("User",back_populates="profile")
@@ -30,5 +31,6 @@ class Profile(db.Model):
             "breed":self.breed,
             "weight":self.weight,
             "age":self.age,
+            "image":self.image,
             "created_at":self.created_at
         }

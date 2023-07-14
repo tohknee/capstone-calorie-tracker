@@ -10,9 +10,9 @@ const GetCurrentPetProfiles = () => {
     const dispatch = useDispatch()
     const profiles=useSelector(state=>state.profile)
     const loggedIn=useSelector((state)=>state.session)
-
+    
     const profilesArray = Object.values(profiles)
-    const profileId=profiles.id
+
     useEffect(()=>{
         dispatch(thunkCurrentUserPets())
     },[dispatch])
@@ -48,7 +48,8 @@ return (
              Weight: {profile.weight} lbs
             </div>
           </div>
-          <img className="profile-image" src="https://d3ciu7npf6axud.cloudfront.net/5c93a055-1695-47c6-84f8-ae2b5e1b58db/images/defaults/dog-image.webp"></img>
+          
+          <img className="profile-image" src={profile.image}></img>
           <div className="profile-actions">
             <div className="action-div">
             <Link to={`/profile/edit/${profile.id}`}>
