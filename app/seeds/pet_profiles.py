@@ -10,6 +10,7 @@ def seed_profiles():
         weight="18",
         age="age",
         gender="gender",
+        image="https://poundhoundbucket.s3.us-west-1.amazonaws.com/1860d17902104b428be0581d79bb70ba.jpg"
     )
     profile1=Profile(
         user_id=2,
@@ -18,6 +19,7 @@ def seed_profiles():
         weight="20",
         age="3",
         gender="male",
+        image="https://poundhoundbucket.s3.us-west-1.amazonaws.com/4c54ab9bf6404a60ab2703bb3221e134.jpg"
     )
 
     profile_list=[demo,profile1]
