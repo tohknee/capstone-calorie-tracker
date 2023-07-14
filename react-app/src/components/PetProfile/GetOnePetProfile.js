@@ -3,6 +3,7 @@ import { useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import { thunkGetOnePetProfile } from "../../store/profile";
 import { thunkCurrentPetCalorieGoals } from "../../store/calories";
+import "./SinglePetProfile.css"
 
 const GetOnePetProfile = () => {
   const dispatch = useDispatch();
@@ -23,22 +24,26 @@ const GetOnePetProfile = () => {
 
   
   return (
-    <div>
-      <div>GET ONE PRFILE</div>
-      <div>
-        pet name {profile.dog_name} breed {profile.breed}
-      </div>
-      {Object.keys(calorieGoal).length > 0 && (
-        <div>
-          <div>Caloric Goals:</div>
-          {Object.values(calorieGoal).map((goal) => (
-            <div key={goal.id}>
-              Goal ID: {goal.id}, Target Calories: {goal.calorie_goal} , Pet ID: {goal.dog_id}
-            </div>
-          ))}
-        </div>
-      )}
+    <div className="pet-profile">
+    <h2>
+     {profile.dog_name} | {profile.breed}
+    </h2>
+    <div className="pet-image">
+      <img src={profile.image} alt={profile.dog_name} />
     </div>
+    {Object.keys(calorieGoal).length > 0 && (
+      <div className="caloric-goals">
+        <div className="section-title">Daily Caloric Goal:</div>
+        {Object.values(calorieGoal).map((goal) => (
+          <div key={goal.id} className="goal-item">
+            {/* <div>Goal ID: {goal.id}</div> */}
+            {/* <div>Target Calories: {goal.calorie_goal}</div> */}
+            {/* <div>Pet ID: {goal.dog_id}</div> */}
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
   );
 };
 
