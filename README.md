@@ -16,10 +16,11 @@ This project allows users to create pet profiles and add pet photos using AWS. I
 ### Backend
  * Flask
  * SQLAlchemy
+ * AWS SDK
    
 ### Frontend:
  * React
  * Redux
  * CSS
 
-### AWS S3 Buckets
+
