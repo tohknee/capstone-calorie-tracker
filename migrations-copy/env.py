@@ -1,3 +1,4 @@
+# COPY THE WHOLE FILE
 from __future__ import with_statement
 
 import logging
