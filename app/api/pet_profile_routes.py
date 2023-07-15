@@ -10,7 +10,7 @@ from app.forms.calorie_form import CalorieForm
 from app.forms.weight_form import WeightForm
 from app.forms.meal_form import MealForm
 from app.api.AWS_helper import (
-    upload_file_to_s3, get_unique_filename)
+    upload_file_to_s3, get_unique_filename, remove_file_from_s3)
 
 profile_routes=Blueprint("profile", __name__)
 
@@ -126,6 +126,9 @@ def delete_pet(id):
         return jsonify({'error': 'Pet profile not found'}), 404
     
     if pet_profile.user_id==current_user.id:
+        
+        
+        remove_file_from_s3(pet_profile.image)
         db.session.delete(pet_profile)
         db.session.commit()
         return jsonify({'message': 'Pet profile log deleted successfully!'}), 200
