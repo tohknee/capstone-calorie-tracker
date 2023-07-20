@@ -3,14 +3,14 @@ import { useEffect, Fragment } from "react";
 import { thunkCurrentUserPets } from "../../store/profile";
 import OpenModalButton from "../OpenModalButton";
 import DeletePetProfile from "./DeleteProfile";
-import { Link } from "react-router-dom"
+import { Link,useHistory } from "react-router-dom"
 import "./PetProfile.css"
 
 const GetCurrentPetProfiles = () => {
     const dispatch = useDispatch()
     const profiles=useSelector(state=>state.profile)
     const loggedIn=useSelector((state)=>state.session)
-    
+    const history=useHistory()
     const profilesArray = Object.values(profiles)
 
     useEffect(()=>{
@@ -23,6 +23,12 @@ if(!profiles){
     return "loading..."
 }
 
+const handleButtonClick=()=>{
+  history.push('/profile/new')
+}
+if(Object.keys(profiles).length===0){
+  return <div className="no-meal-form">It appears that you haven't made any pet profiles yet. <button type="submit" onClick={handleButtonClick}>Click here </button> to create a new pet profile! </div>
+}
 return (
     <>
     
