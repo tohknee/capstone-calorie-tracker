@@ -2,28 +2,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, Fragment } from "react";
 import { thunkCurrentUserMealLogs } from "../../store/meals";
 import OpenModalButton from "../OpenModalButton";
-import { Link } from "react-router-dom"
+import { Link,useHistory } from "react-router-dom"
 // import "./MealLogs.css"
 import "./Second.css"
+import "./NoMeals.css"
 import DeleteMealLog from "./DeleteMealLog";
-
 
 const GetCurrentMealLogs=()=>{
     const dispatch=useDispatch()
     const logs=useSelector(state=>state.meal)
     const state=useSelector(state=>state)
     const logsArray=Object.values(logs)
+    const history=useHistory()
 
     useEffect(()=>{
         dispatch(thunkCurrentUserMealLogs())
     },[dispatch])
 
+
+    const handleButtonClick=()=>{
+      history.push('/profile')
+    }
     if(!logs){
         return "loading..."
     }
 
     if(Object.keys(logs).length===0){
-      return "You have no meals. Please Log in or create a new meal log."
+      return <div className="no-meal-form">Hmm... it seems you have no logged meals. <button type="submit" onClick={handleButtonClick}>Click here </button> to head back to your pets and click the  <button type="submit">Add meal log </button> to add a meal log!</div>
     }
 
     return (
