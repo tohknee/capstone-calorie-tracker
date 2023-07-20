@@ -1,0 +1,43 @@
+/* Reset the default margin and padding of the body and html elements */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Set height to 100% to occupy the entire viewport */
+  }
+  
+  
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .site-footer {
+    background-color: #f5f5f5;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto; 
+  }
+  
+  .social-icons {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  
+  .social-icons a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #333;
+    text-decoration: none;
+    font-size: 24px;
+  }
+  
+  .social-icons a:hover {
+    color: #007bff;
+  }
+  
+  .label {
+    margin-left: 5px;
+  }
+  

@@ -22,7 +22,7 @@ import PublicProfiles from "./components/PublicExamples/PetProfiles";
 import AboutPage from "./components/PublicExamples/About";
 import ExampleMeals from "./components/PublicExamples/CalorieGoals";
 import ComingSoon from "./components/BonusFeatureSoon/ComingSoon";
-
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
@@ -66,8 +66,9 @@ function App() {
           <Route exact path="/meals/edit/:mealId" component={EditMealLog}></Route>
           <Route exact path= "/calories/all" component={GetCurrentCalorieGoals}></Route>
           
-        </Switch>
+        </Switch> 
       )}
+      <Footer></Footer>
     </>
   );
 }
