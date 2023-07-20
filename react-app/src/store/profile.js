@@ -51,10 +51,10 @@ export const thunkCreatePetProfile = (formData) => async (dispatch) => {
         const { resPost } = await response.json();
         dispatch(createProfile(resPost));
       } else {
-        console.log('There was an error making your post!');
+        // console.log('There was an error making your post!');
       }
     } catch (error) {
-      console.log('There was an error making your request!', error);
+    //   console.log('There was an error making your request!', error);
     }
   };
 

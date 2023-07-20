@@ -66,7 +66,7 @@ const PetProfileForm = ({ profile, formType }) => {
         dispatch(thunkCurrentUserPets());
         history.push(`/profile`);
       } catch(error){
-        console.log(error)
+        // console.log(error)
       }
     }
     if (formType === "Edit Profile") {
@@ -76,7 +76,7 @@ const PetProfileForm = ({ profile, formType }) => {
         dispatch(thunkCurrentUserPets());
         history.push(`/profile`);
       } catch(error){
-        console.log(error)
+        // console.log(error)
       }
     }
   };

@@ -25,7 +25,7 @@ if(!profiles){
 
 return (
     <>
-    {console.log("this is profiles",profiles)}
+    
     <h1>Your Pets</h1>
     <div className="pet-profiles">
    

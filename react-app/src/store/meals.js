@@ -36,7 +36,7 @@ export const thunkCurrentUserMealLogs=()=>async(dispatch)=>{
         dispatch(loadCurrentUserMealLogs(data))
     }
     else {
-        console.log("Current user meal thunk error")
+        // console.log("Current user meal thunk error")
     }
 }
 
