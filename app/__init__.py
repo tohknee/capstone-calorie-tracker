@@ -11,6 +11,7 @@ from .api.pet_profile_routes import profile_routes
 from .api.calorie_routes import calorie_routes
 from .api.weight_routes import weight_routes
 from .api.meal_routes import meal_routes
+from .api.chatGPT import chatgpt_routes
 
 from .seeds import seed_commands
 from .config import Config
@@ -37,6 +38,7 @@ app.register_blueprint(profile_routes, url_prefix='/api/profile')
 app.register_blueprint(calorie_routes, url_prefix='/api/calories')
 app.register_blueprint(weight_routes, url_prefix='/api/weight')
 app.register_blueprint(meal_routes, url_prefix='/api/meals')
+app.register_blueprint(chatgpt_routes, url_prefix='/api/chat')
 
 db.init_app(app)
 Migrate(app, db)
