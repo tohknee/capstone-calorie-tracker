@@ -17,6 +17,9 @@ body, html {
     padding: 20px;
     text-align: center;
     margin-top: 12px; 
+    position:  absolute;
+    bottom: 0;
+    width: 100%;
   }
   
   .social-icons {
